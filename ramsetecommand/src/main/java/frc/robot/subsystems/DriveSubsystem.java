@@ -4,19 +4,18 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Encoder;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -25,17 +24,25 @@ import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
+  
+  /*
   private final SpeedControllerGroup m_leftMotors =
-      new SpeedControllerGroup(new WPI_TalonSRX(DriveConstants.kLeftMotor1Port),
-                               new WPI_TalonSRX(DriveConstants.kLeftMotor2Port));
+      new SpeedControllerGroup(new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless));
+                               //new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless));
 
   // The motors on the right side of the drive.
   private final SpeedControllerGroup m_rightMotors =
-      new SpeedControllerGroup(new WPI_TalonSRX(DriveConstants.kRightMotor1Port),
-                               new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
+  new SpeedControllerGroup(new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless));
+                           //new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless));
+  */
+
+  private CANSparkMax leftLead = new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless);
+  private CANSparkMax leftFollow = new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless);
+  private CANSparkMax rightLead = new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless);
+  private CANSparkMax rightFollow = new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless);
 
   // The robot's drive
-  private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
+  private final DifferentialDrive m_drive = new DifferentialDrive(leftLead, rightLead);
 
   // The left-side drive encoder
   private final Encoder m_leftEncoder =
@@ -56,6 +63,7 @@ public class DriveSubsystem extends SubsystemBase {
   /**
    * Creates a new DriveSubsystem.
    */
+
   public DriveSubsystem() {
     // Sets the distance per pulse for the encoders
     m_leftEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
@@ -64,6 +72,12 @@ public class DriveSubsystem extends SubsystemBase {
     resetEncoders();
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
   }
+/*
+  public void follow() {
+    leftFollow.follow(leftLead, false);
+    rightFollow.follow(rightLead, false);
+  }
+*/
 
   @Override
   public void periodic() {
@@ -108,6 +122,8 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void arcadeDrive(double fwd, double rot) {
     m_drive.arcadeDrive(fwd, rot);
+    leftFollow.follow(leftLead);
+    rightFollow.follow(rightLead);
   }
 
   /**
@@ -117,8 +133,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rightVolts the commanded right output
    */
   public void tankDriveVolts(double leftVolts, double rightVolts) {
-    m_leftMotors.setVoltage(leftVolts);
-    m_rightMotors.setVoltage(-rightVolts);
+    leftLead.setVoltage(leftVolts);
+    rightLead.setVoltage(-rightVolts);
   }
 
   /**
@@ -146,8 +162,7 @@ public class DriveSubsystem extends SubsystemBase {
   public Encoder getLeftEncoder() {
     return m_leftEncoder;
   }
-
-  /**
+    /*
    * Gets the right drive encoder.
    *
    * @return the right drive encoder
@@ -178,6 +193,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @return the robot's heading in degrees, from 180 to 180
    */
   public double getHeading() {
+    System.out.println("gyro is " + Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0));
     return Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 

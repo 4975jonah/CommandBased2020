@@ -30,6 +30,7 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Shifter;
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
@@ -42,6 +43,7 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final Shifter m_shifter = new Shifter();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -50,7 +52,6 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    System.out.println("in robot container");
     // Configure the button bindings
     configureButtonBindings();
 
@@ -61,9 +62,7 @@ public class RobotContainer {
         // hand, and turning controlled by the right.
         new RunCommand(() -> m_robotDrive
             .arcadeDrive(m_driverController.getY(GenericHID.Hand.kLeft) * -1,
-                         m_driverController.getX(GenericHID.Hand.kRight)), m_robotDrive));
-        
-
+                         m_driverController.getX(GenericHID.Hand.kLeft)), m_robotDrive));
   }
 
   /**
@@ -78,6 +77,9 @@ public class RobotContainer {
         .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
         .whenReleased(() -> m_robotDrive.setMaxOutput(1));
 
+    new JoystickButton(m_driverController, Button.kA.value)
+    .whenPressed(() -> m_shifter.UpShift())
+    .whenReleased(() -> m_shifter.DownShift());
   }
 
 
@@ -86,6 +88,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+   
   public Command getAutonomousCommand() {
 
     // Create a voltage constraint to ensure we don't accelerate too fast
