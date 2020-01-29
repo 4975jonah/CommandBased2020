@@ -38,8 +38,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   private CANSparkMax leftLead = new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless);
   private CANSparkMax leftFollow = new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless);
-  private CANSparkMax rightLead = new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless);
-  private CANSparkMax rightFollow = new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless);
+  private CANSparkMax rightFollow = new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless);
+  private CANSparkMax rightLead = new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless);
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(leftLead, rightLead);
@@ -65,9 +65,8 @@ public class DriveSubsystem extends SubsystemBase {
    */
 
   public DriveSubsystem() {
-    // Sets the distance per pulse for the encoders
-    m_leftEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
-    m_rightEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
+    leftFollow.follow(leftLead);
+    rightFollow.follow(rightLead);
 
     resetEncoders();
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
@@ -120,10 +119,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fwd the commanded forward movement
    * @param rot the commanded rotation
    */
-  public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
-    leftFollow.follow(leftLead);
-    rightFollow.follow(rightLead);
+  public void tankDrive(double leftSpeed, double rightSpeed) {
+    m_drive.tankDrive(leftSpeed, rightSpeed);
   }
 
   /**
@@ -193,7 +190,6 @@ public class DriveSubsystem extends SubsystemBase {
    * @return the robot's heading in degrees, from 180 to 180
    */
   public double getHeading() {
-    System.out.println("gyro is " + Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0));
     return Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 
