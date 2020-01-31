@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Encoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
@@ -38,8 +36,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   private CANSparkMax leftLead = new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless);
   private CANSparkMax leftFollow = new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless);
-  private CANSparkMax rightFollow = new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless);
   private CANSparkMax rightLead = new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless);
+  private CANSparkMax rightFollow = new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless);
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(leftLead, rightLead);
@@ -71,12 +69,6 @@ public class DriveSubsystem extends SubsystemBase {
     resetEncoders();
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
   }
-/*
-  public void follow() {
-    leftFollow.follow(leftLead, false);
-    rightFollow.follow(rightLead, false);
-  }
-*/
 
   @Override
   public void periodic() {
@@ -119,8 +111,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fwd the commanded forward movement
    * @param rot the commanded rotation
    */
-  public void tankDrive(double leftSpeed, double rightSpeed) {
-    m_drive.tankDrive(leftSpeed, rightSpeed);
+  public void arcadeDrive(double leftSpeed, double rightSpeed) {
+    m_drive.arcadeDrive(leftSpeed, rightSpeed);
   }
 
   /**
