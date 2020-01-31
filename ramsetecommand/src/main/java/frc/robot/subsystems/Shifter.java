@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Shifter extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
-  private final DoubleSolenoid m_shifter = new DoubleSolenoid(4,5,0);
+  private final DoubleSolenoid m_shifter = new DoubleSolenoid(0,1,0);
 
   public DoubleSolenoid.Value UpShift() {
     // Shifts Up
@@ -25,5 +25,10 @@ public class Shifter extends SubsystemBase {
         // Shifts Down
         m_shifter.set(Value.kReverse);
         return m_shifter.get();
+    }
+
+    public DoubleSolenoid.Value getShifter() {
+      //returns the value of the double solenoid
+      return m_shifter.get();
     }
 }

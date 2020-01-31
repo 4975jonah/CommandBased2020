@@ -58,11 +58,9 @@ public class RobotContainer {
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
     m_robotDrive.setDefaultCommand(
-        // A split-stick arcade command, with forward/backward controlled by the left
-        // hand, and turning controlled by the right.
         new RunCommand(() -> m_robotDrive
             .arcadeDrive(m_driverController.getY(GenericHID.Hand.kLeft)*-1,
-                       m_driverController.getX(GenericHID.Hand.kLeft)), m_robotDrive));
+                     m_driverController.getX(GenericHID.Hand.kLeft)), m_robotDrive));
   }
 
   /**
@@ -73,14 +71,15 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Drive at half speed when the right bumper is held
-    new JoystickButton(m_driverController, Button.kBumperRight.value)
+    new JoystickButton(m_driverController, Button.kStart.value)
         .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
         .whenReleased(() -> m_robotDrive.setMaxOutput(1));
 
-    new JoystickButton(m_driverController, Button.kA.value)
-    .whenPressed(() -> m_shifter.UpShift())
-    .whenReleased(() -> m_shifter.DownShift());
+    new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(() -> m_shifter.UpShift());
+    new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(() -> m_shifter.DownShift());
   }
+
+
 
 
   /**
