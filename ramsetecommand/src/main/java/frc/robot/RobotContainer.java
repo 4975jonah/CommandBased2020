@@ -63,8 +63,10 @@ public class RobotContainer {
         new RunCommand(() -> m_robotDrive
             .arcadeDrive(m_driverController.getY(GenericHID.Hand.kLeft)*-1,
                        m_driverController.getX(GenericHID.Hand.kLeft)), m_robotDrive));
-  }
 
+
+  }
+  
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -78,8 +80,10 @@ public class RobotContainer {
         .whenReleased(() -> m_robotDrive.setMaxOutput(1));
 
     new JoystickButton(m_driverController, Button.kA.value)
-    .whenPressed(() -> m_shifter.UpShift())
-    .whenReleased(() -> m_shifter.DownShift());
+    .whenPressed(() -> m_shifter.UpShift());
+
+    new JoystickButton(m_driverController, Button.kX.value)
+    .whenPressed(() -> m_shifter.DownShift());
   }
 
 
