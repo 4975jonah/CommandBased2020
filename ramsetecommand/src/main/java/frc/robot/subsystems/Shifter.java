@@ -26,4 +26,9 @@ public class Shifter extends SubsystemBase {
         m_shifter.set(Value.kReverse);
         return m_shifter.get();
     }
+
+    public DoubleSolenoid.Value getShifter() {
+      //returns the value of the double solenoid
+      return m_shifter.get();
+    }
 }
