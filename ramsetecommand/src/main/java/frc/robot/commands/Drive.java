@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import java.util.function.DoubleSupplier;
 
-import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -43,12 +43,12 @@ public class Drive extends CommandBase {
         Double rotation;
         DoubleSolenoid.Value shifter_state = m_shifter.getShifter();
         if (shifter_state == Value.kForward) {
-            rotation = m_rotation.getAsDouble() * .5;
+            rotation = m_rotation.getAsDouble() * Constants.DriveConstants.kRotationMultiplier;
         } else {
             rotation = m_rotation.getAsDouble();
         }
-        m_drive.arcadeDrive(m_forward.getAsDouble(), rotation);
-        
+        //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
+        m_drive.arcadeDrive(m_forward.getAsDouble()*-1, rotation);
     }
 
     public boolean isFinished() {

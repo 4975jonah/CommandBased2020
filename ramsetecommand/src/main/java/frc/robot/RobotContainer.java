@@ -69,7 +69,7 @@ public class RobotContainer {
             m_robotDrive,
             m_shifter,
             () -> m_driverController.getY(GenericHID.Hand.kLeft),
-            () -> m_driverController.getX(GenericHID.Hand.kRight)));
+            () -> m_driverController.getX(GenericHID.Hand.kLeft)));
   }
 
   /**

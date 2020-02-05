@@ -25,17 +25,6 @@ import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
-  
-  /*
-  private final SpeedControllerGroup m_leftMotors =
-      new SpeedControllerGroup(new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless));
-                               //new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless));
-
-  // The motors on the right side of the drive.
-  private final SpeedControllerGroup m_rightMotors =
-  new SpeedControllerGroup(new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless));
-                           //new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless));
-  */
 
   private CANSparkMax leftLead = new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless);
   private CANSparkMax leftFollow = new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless);
@@ -115,6 +104,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rot the commanded rotation
    */
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
+    //System.out.println("left speed is " + leftSpeed);
+    //System.out.println("right speed is " + rightSpeed);
     m_drive.arcadeDrive(leftSpeed, rightSpeed);
   }
 
