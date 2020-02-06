@@ -31,9 +31,9 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
 import frc.robot.commands.Drive;
-
+import frc.robot.subsystems.Shooter;
+import frc.robot.commands.Shoot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
 /**
@@ -45,8 +45,8 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
 public class RobotContainer {
   // The robot's subsystems
   private final Shifter m_shifter = new Shifter();
-
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final Shooter m_shooter = new Shooter();
 
   // The driver's controller
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -84,7 +84,9 @@ public class RobotContainer {
 
     new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(() -> m_shifter.UpShift());
     new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(() -> m_shifter.DownShift());
+    //new JoystickButton(m_driverController, Button.kY.value).whenPressed(() -> m_shooter.Shoot());
 
+    new JoystickButton(m_driverController, Button.kY.value).whenPressed(new Shoot(m_shooter));
   }
 
 
