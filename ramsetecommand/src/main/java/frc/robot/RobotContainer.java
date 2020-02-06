@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.Constants.AutoConstants;
@@ -31,7 +30,10 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
-
+import frc.robot.commands.Drive;
+import frc.robot.subsystems.Shooter;
+import frc.robot.commands.Shoot;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
 /**
@@ -42,11 +44,14 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
  */
 public class RobotContainer {
   // The robot's subsystems
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final Shifter m_shifter = new Shifter();
+  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final Shooter m_shooter = new Shooter();
 
   // The driver's controller
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+
+  DoubleSolenoid.Value foo = m_shifter.getShifter();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -57,10 +62,12 @@ public class RobotContainer {
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
-    m_robotDrive.setDefaultCommand(
-        new RunCommand(() -> m_robotDrive
-            .arcadeDrive(m_driverController.getY(GenericHID.Hand.kLeft)*-1,
-                     m_driverController.getX(GenericHID.Hand.kLeft)), m_robotDrive));
+      m_robotDrive.setDefaultCommand(
+          new Drive(
+            m_robotDrive,
+            m_shifter,
+            () -> m_driverController.getY(GenericHID.Hand.kLeft),
+            () -> m_driverController.getX(GenericHID.Hand.kLeft)));
   }
 
 
@@ -80,6 +87,9 @@ public class RobotContainer {
 
     new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(() -> m_shifter.UpShift());
     new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(() -> m_shifter.DownShift());
+    //new JoystickButton(m_driverController, Button.kY.value).whenPressed(() -> m_shooter.Shoot());
+
+    new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
   }
 
 
