@@ -90,7 +90,7 @@ public class RobotContainer {
     //new JoystickButton(m_driverController, Button.kY.value).whenPressed(() -> m_shooter.Shoot());
 
     new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
-    new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
+    new JoystickButton(m_driverController, Button.kX.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
   }
 
 
