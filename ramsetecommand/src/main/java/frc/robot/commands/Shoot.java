@@ -6,20 +6,11 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
 import java.util.function.DoubleSupplier;
-
 import frc.robot.Constants;
-import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.Shifter;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-
-
-public class Drive extends CommandBase {
+public class Shoot extends CommandBase {
     private final Shifter m_shifter;
     private final DoubleSupplier m_forward;
     private final DoubleSupplier m_rotation;
