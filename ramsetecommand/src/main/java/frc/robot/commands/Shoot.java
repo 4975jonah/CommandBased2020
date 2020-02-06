@@ -18,6 +18,7 @@ public class Shoot extends CommandBase {
     }
     
     public void initialize() {
+        m_shooter.Shoot();
     }
 
     public void execute() {
@@ -26,7 +27,8 @@ public class Shoot extends CommandBase {
     }
 
     public boolean isFinished() {
-        return false;
+        m_shooter.Stop();
+        return true;
     }
 
     public void end() {

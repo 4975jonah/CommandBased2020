@@ -86,7 +86,7 @@ public class RobotContainer {
     new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(() -> m_shifter.DownShift());
     //new JoystickButton(m_driverController, Button.kY.value).whenPressed(() -> m_shooter.Shoot());
 
-    new JoystickButton(m_driverController, Button.kY.value).whenPressed(new Shoot(m_shooter));
+    new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
   }
 
 
