@@ -17,8 +17,6 @@ import frc.robot.subsystems.Shifter;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-
-
 public class Drive extends CommandBase {
     private final Shifter m_shifter;
     private final DoubleSupplier m_forward;

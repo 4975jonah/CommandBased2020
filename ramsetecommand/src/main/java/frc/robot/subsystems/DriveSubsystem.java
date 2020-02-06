@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.DriveConstants;
+import frc.robot.subsystems.Limelight;
 
 public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
@@ -30,6 +31,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(leftLead, rightLead);
+  private final Limelight m_limelight = new Limelight();
 
   // The left-side drive encoder
   private final Encoder m_leftEncoder =
@@ -100,9 +102,11 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fwd the commanded forward movement
    * @param rot the commanded rotation
    */
+  public void chaseBall(double leftSpeed, double rightSpeed) {
+    m_drive.tankDrive(leftSpeed, rightSpeed);
+  }
+
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
-    //System.out.println("left speed is " + leftSpeed);
-    //System.out.println("right speed is " + rightSpeed);
     m_drive.arcadeDrive(leftSpeed, rightSpeed);
   }
 

@@ -30,9 +30,11 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
+import frc.robot.subsystems.Limelight;
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.Shooter;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.Kuchota;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
@@ -47,6 +49,7 @@ public class RobotContainer {
   private final Shifter m_shifter = new Shifter();
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final Shooter m_shooter = new Shooter();
+  private final Limelight m_limelight = new Limelight();
 
   // The driver's controller
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -90,6 +93,7 @@ public class RobotContainer {
     //new JoystickButton(m_driverController, Button.kY.value).whenPressed(() -> m_shooter.Shoot());
 
     new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
+    new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
   }
 
 
