@@ -26,18 +26,21 @@ public class Limelight extends SubsystemBase {
     public Double getXCoord() {
       // Returns the X coordinate of the target
         double x = tx.getDouble(0.0);
+        System.out.println("x is " + tx.getDouble(0.0));
           return x;
     }
 
     public Double getYCoord() {
       // Returns the Y coordinate of the target
         double y = ty.getDouble(0.0);
+        System.out.println("y is " + ty.getDouble(0.0));
           return y;
     }
 
     public Double getArea() {
         // Returns the Y coordinate of the target
           double area = ta.getDouble(0.0);
+          System.out.println("a is " + ta.getDouble(0.0));
             return area;
     }
 }
