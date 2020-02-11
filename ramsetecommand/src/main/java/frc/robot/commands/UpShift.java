@@ -1,0 +1,41 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
+package frc.robot.commands;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Shifter;
+
+public class UpShift extends CommandBase {
+    private final Shifter m_shifter;
+    
+    public UpShift(Shifter shifter) {
+        m_shifter = shifter;
+        addRequirements(m_shifter);
+    }
+    
+    public void initialize() {
+        m_shifter.UpShift();
+    }
+    
+    public void execute() {
+        //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
+        m_shifter.UpShift();
+    }
+    
+    public boolean isFinished() {
+        m_shifter.DownShift();
+        return true;
+    }
+    
+    public void end() {
+        m_shifter.DownShift();
+    }
+    
+    public void interrupted() {
+        m_shifter.DownShift();
+    }
+}

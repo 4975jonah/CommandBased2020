@@ -32,6 +32,8 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
 import frc.robot.subsystems.Limelight;
 import frc.robot.commands.Drive;
+import frc.robot.commands.UpShift;
+import frc.robot.commands.DownShift;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Pneu_Climber;
 import frc.robot.commands.Shoot;
@@ -90,10 +92,9 @@ public class RobotContainer {
       new JoystickButton(m_driverController, Button.kStart.value)
       .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
       .whenReleased(() -> m_robotDrive.setMaxOutput(1));
-      
-      new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(() -> m_shifter.UpShift());
-      new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(() -> m_shifter.DownShift());
-      //new JoystickButton(m_driverController, Button.kY.value).whenPressed(() -> m_shooter.Shoot());
+
+      new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(new UpShift(m_shifter));
+      new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(new DownShift(m_shifter));
       
       new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
       new JoystickButton(m_driverController, Button.kX.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
