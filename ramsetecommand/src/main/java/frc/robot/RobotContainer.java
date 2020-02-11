@@ -33,7 +33,9 @@ import frc.robot.subsystems.Shifter;
 import frc.robot.subsystems.Limelight;
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Pneu_Climber;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.Extend_Climber;
 import frc.robot.commands.Kuchota;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.XboxController.Button;
@@ -50,6 +52,7 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final Shooter m_shooter = new Shooter();
   private final Limelight m_limelight = new Limelight();
+  private final Pneu_Climber m_pclimber = new Pneu_Climber();
 
   // The driver's controller
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -91,6 +94,7 @@ public class RobotContainer {
 
     new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
     new JoystickButton(m_driverController, Button.kX.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
+    new JoystickButton(m_driverController, Button.kBack.value).whenPressed(new Extend_Climber(m_pclimber));
   }
 
 

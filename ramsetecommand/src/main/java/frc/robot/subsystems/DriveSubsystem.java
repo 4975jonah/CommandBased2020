@@ -22,36 +22,27 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.Limelight;
 
 public class DriveSubsystem extends SubsystemBase {
-  // The motors on the left side of the drive.
-
+/*Our left and right side of the drivetrain is only being controlled by two motor controllers, while the other two are set to be followers. This is because
+DifferentialDrive will only take two motor controllers
+*/
   private CANSparkMax leftLead = new CANSparkMax(DriveConstants.kLeftMotor1Port, MotorType.kBrushless);
   private CANSparkMax leftFollow = new CANSparkMax(DriveConstants.kLeftMotor2Port, MotorType.kBrushless);
   private CANSparkMax rightLead = new CANSparkMax(DriveConstants.kRightMotor2Port, MotorType.kBrushless);
   private CANSparkMax rightFollow = new CANSparkMax(DriveConstants.kRightMotor1Port, MotorType.kBrushless);
-
-  // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(leftLead, rightLead);
-  private final Limelight m_limelight = new Limelight();
 
-  // The left-side drive encoder
+  private final Limelight m_limelight = new Limelight();
+  private final AHRS m_gyro = new AHRS(SPI.Port.kMXP);
+
   private final Encoder m_leftEncoder =
       new Encoder(DriveConstants.kLeftEncoderPorts[0], DriveConstants.kLeftEncoderPorts[1],
                   DriveConstants.kLeftEncoderReversed);
 
-  // The right-side drive encoder
   private final Encoder m_rightEncoder =
       new Encoder(DriveConstants.kRightEncoderPorts[0], DriveConstants.kRightEncoderPorts[1],
                   DriveConstants.kRightEncoderReversed);
 
-  // The gyro sensor
-  private final AHRS m_gyro = new AHRS(SPI.Port.kMXP);
-
-  // Odometry class for tracking robot pose
   private final DifferentialDriveOdometry m_odometry;
-
-  /**
-   * Creates a new DriveSubsystem.
-   */
 
   public DriveSubsystem() {
     leftFollow.follow(leftLead);
@@ -96,13 +87,11 @@ public class DriveSubsystem extends SubsystemBase {
     m_odometry.resetPosition(pose, Rotation2d.fromDegrees(getHeading()));
   }
 
-  /**
-   * Drives the robot using arcade controls.
-   *
-   * @param fwd the commanded forward movement
-   * @param rot the commanded rotation
-   */
   public void chaseBall(double leftSpeed, double rightSpeed) {
+    /*
+    It might look funky but we use tankDrive so we can control the left and right speeds independently of eachother much easier than we can
+    with arcadeDrive.
+    */
     m_drive.tankDrive(leftSpeed, rightSpeed);
   }
 
