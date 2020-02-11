@@ -6,25 +6,29 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Shooter extends SubsystemBase {
+import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
+public class Aimer extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
-  private final CANSparkMax m_top = new CANSparkMax(5, MotorType.kBrushless);
-  private final CANSparkMax m_bottom = new CANSparkMax(6, MotorType.kBrushless);
-  
-  public void Shoot() {
-    // Shoots from _____
-    m_top.set(0.4);
-    m_bottom.set(1.0);
+  private final DoubleSolenoid m_aimer = new DoubleSolenoid(6,7,0);
+
+  public DoubleSolenoid.Value AimUp() {
+    // Aims Up
+        m_aimer.set(Value.kForward);
+        return m_aimer.get();
   }
-  
-  public void Stop() {
-    // Shifts Down
-    m_top.set(0.0);
-    m_bottom.set(0.0);
-  }
-  
+
+  public DoubleSolenoid.Value AimDown() {
+       // Aims Down
+      m_aimer.set(Value.kReverse);
+      return m_aimer.get();
+    }
+
+  public DoubleSolenoid.Value getAimer() {
+    //returns the value of the double solenoid
+    return m_aimer.get();
+    }
 }

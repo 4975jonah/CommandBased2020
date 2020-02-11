@@ -10,21 +10,23 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.co
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Shooter extends SubsystemBase {
-  // The double solenoid that extends and retracts the cylinder.
-  private final CANSparkMax m_top = new CANSparkMax(5, MotorType.kBrushless);
-  private final CANSparkMax m_bottom = new CANSparkMax(6, MotorType.kBrushless);
-  
-  public void Shoot() {
-    // Shoots from _____
-    m_top.set(0.4);
-    m_bottom.set(1.0);
-  }
-  
-  public void Stop() {
-    // Shifts Down
-    m_top.set(0.0);
-    m_bottom.set(0.0);
-  }
-  
+public class Sintake extends SubsystemBase {
+    // The double solenoid that extends and retracts the cylinder.
+    private final CANSparkMax m_intake = new CANSparkMax(6, MotorType.kBrushless);
+    
+    public void Intake() {
+        // Shoots from _____
+        m_intake.set(1.0);
+    }
+
+    public void Eject() {
+        // Shoots from _____
+        m_intake.set(-1.0);
+    }
+    
+    public void Stop() {
+        // Shifts Down
+        m_intake.set(0.0);
+    }
+    
 }

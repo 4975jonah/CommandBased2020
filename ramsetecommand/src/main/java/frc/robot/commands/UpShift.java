@@ -7,35 +7,35 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Shifter;
 
-public class Shoot extends CommandBase {
-    private final Shooter m_shooter;
+public class UpShift extends CommandBase {
+    private final Shifter m_shifter;
     
-    public Shoot(Shooter shooter) {
-        m_shooter = shooter;
-        addRequirements(shooter);
+    public UpShift(Shifter shifter) {
+        m_shifter = shifter;
+        addRequirements(m_shifter);
     }
     
     public void initialize() {
-        m_shooter.Shoot();
+        m_shifter.UpShift();
     }
     
     public void execute() {
         //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
-        m_shooter.Shoot();
+        m_shifter.UpShift();
     }
     
     public boolean isFinished() {
-        m_shooter.Stop();
+        m_shifter.DownShift();
         return true;
     }
     
     public void end() {
-        m_shooter.Stop();
+        m_shifter.DownShift();
     }
     
     public void interrupted() {
-        m_shooter.Stop();
+        m_shifter.DownShift();
     }
 }
