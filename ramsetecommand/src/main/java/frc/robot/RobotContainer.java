@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.subsystems.BallHolder;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
 import frc.robot.subsystems.Limelight;
@@ -52,6 +53,7 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
 */
 public class RobotContainer {
   // The robot's subsystems
+  private final BallHolder m_ballholder = new BallHolder();
   private final Shifter m_shifter = new Shifter();
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final Shooter m_shooter = new Shooter();
@@ -63,7 +65,6 @@ public class RobotContainer {
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
   
   DoubleSolenoid.Value foo = m_shifter.getShifter();
-  
   /**
   * The container for the robot.  Contains subsystems, OI devices, and commands.
   */
@@ -73,12 +74,12 @@ public class RobotContainer {
     
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
-    m_robotDrive.setDefaultCommand(
-    new Drive(
-    m_robotDrive,
-    m_shifter,
-    () -> m_driverController.getY(GenericHID.Hand.kLeft),
-    () -> m_driverController.getX(GenericHID.Hand.kLeft)));
+      m_robotDrive.setDefaultCommand(
+          new Drive(
+            m_robotDrive,
+            m_shifter,
+            () -> m_driverController.getY(GenericHID.Hand.kLeft),
+            () -> m_driverController.getX(GenericHID.Hand.kLeft)));
   }
   
   /**
@@ -94,7 +95,8 @@ public class RobotContainer {
       .whenReleased(() -> m_robotDrive.setMaxOutput(1));
 
       new JoystickButton(m_driverController, Button.kStickLeft.value).whileHeld(new UpShift(m_shifter));
-      
+      new JoystickButton(m_driverController, Button.kX.value).whenPressed(() -> m_ballholder.Extend());
+      new JoystickButton(m_driverController, Button.kX.value).whenPressed(() -> m_ballholder.Retract());
       new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
       new JoystickButton(m_driverController, Button.kX.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
       new JoystickButton(m_driverController, Button.kBack.value).whenPressed(new Extend_Climber(m_pclimber));
