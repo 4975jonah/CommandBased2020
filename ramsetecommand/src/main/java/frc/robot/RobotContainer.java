@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.subsystems.BallHolder;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
 import frc.robot.subsystems.Limelight;
@@ -46,6 +47,7 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
  */
 public class RobotContainer {
   // The robot's subsystems
+  private final BallHolder m_ballholder = new BallHolder();
   private final Shifter m_shifter = new Shifter();
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final Shooter m_shooter = new Shooter();
@@ -55,7 +57,6 @@ public class RobotContainer {
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
 
   DoubleSolenoid.Value foo = m_shifter.getShifter();
-
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -91,6 +92,9 @@ public class RobotContainer {
     new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(() -> m_shifter.UpShift());
     new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(() -> m_shifter.DownShift());
     //new JoystickButton(m_driverController, Button.kY.value).whenPressed(() -> m_shooter.Shoot());
+
+    new JoystickButton(m_driverController, Button.kX.value).whenPressed(() -> m_ballholder.Extend());
+    new JoystickButton(m_driverController, Button.kX.value).whenPressed(() -> m_ballholder.Retract());
 
     new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
     new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
