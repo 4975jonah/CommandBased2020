@@ -6,29 +6,27 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Pneu_Climber extends SubsystemBase {
+public class Sintake extends SubsystemBase {
     // The double solenoid that extends and retracts the cylinder.
-    private final DoubleSolenoid m_climber = new DoubleSolenoid(4,5,0);
+    private final CANSparkMax m_intake = new CANSparkMax(6, MotorType.kBrushless);
     
-    public DoubleSolenoid.Value Extend() {
-        // Shifts Up
-        m_climber.set(Value.kForward);
-        return m_climber.get();
+    public void Intake() {
+        // Shoots from _____
+        m_intake.set(1.0);
+    }
+
+    public void Eject() {
+        // Shoots from _____
+        m_intake.set(-1.0);
     }
     
-    public DoubleSolenoid.Value Retract() {
+    public void Stop() {
         // Shifts Down
-        m_climber.set(Value.kReverse);
-        return m_climber.get();
+        m_intake.set(0.0);
     }
     
-    public DoubleSolenoid.Value getShifter() {
-        //returns the value of the double solenoid
-        return m_climber.get();
-    }
 }
