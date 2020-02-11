@@ -93,8 +93,7 @@ public class RobotContainer {
       .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
       .whenReleased(() -> m_robotDrive.setMaxOutput(1));
 
-      new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(new UpShift(m_shifter));
-      new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(new DownShift(m_shifter));
+      new JoystickButton(m_driverController, Button.kStickLeft.value).whileHeld(new UpShift(m_shifter));
       
       new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
       new JoystickButton(m_driverController, Button.kX.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
