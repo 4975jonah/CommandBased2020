@@ -7,35 +7,35 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Pneu_Climber;;
 
-public class Shoot extends CommandBase {
-    private final Shooter m_shooter;
+public class Extend_Climber extends CommandBase {
+    private final Pneu_Climber m_climber;
     
-    public Shoot(Shooter shooter) {
-        m_shooter = shooter;
-        addRequirements(shooter);
+    public Extend_Climber(Pneu_Climber pneu_climber) {
+        m_climber = pneu_climber;
+        addRequirements(m_climber);
     }
     
     public void initialize() {
-        m_shooter.Shoot();
+        m_climber.Extend();
     }
     
     public void execute() {
         //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
-        m_shooter.Shoot();
+        m_climber.Extend();
     }
     
     public boolean isFinished() {
-        m_shooter.Stop();
+        m_climber.Retract();
         return true;
     }
     
     public void end() {
-        m_shooter.Stop();
+        m_climber.Retract();
     }
     
     public void interrupted() {
-        m_shooter.Stop();
+        m_climber.Retract();
     }
 }

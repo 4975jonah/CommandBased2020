@@ -15,15 +15,15 @@ public class Kuchota extends CommandBase {
     private final Limelight m_limelight;
     private final Double left_speed;
     private final Double right_speed;
-
+    
     public Kuchota(DriveSubsystem drive_subsystem, Limelight limelight) {
-       m_drive = drive_subsystem;
-       m_limelight = limelight;
-       left_speed = m_limelight.getXCoord();
-       right_speed = m_limelight.getXCoord()*-1;
+        m_drive = drive_subsystem;
+        m_limelight = limelight;
+        left_speed = m_limelight.getXCoord();
+        right_speed = m_limelight.getXCoord()*-1;
         addRequirements(drive_subsystem, limelight);
     }
-
+    
     public void initialize() {
         if (left_speed < -5 || right_speed > 5) {
             m_drive.chaseBall(left_speed, right_speed);
@@ -32,7 +32,7 @@ public class Kuchota extends CommandBase {
         }
         System.out.println("in initialize");
     }
-
+    
     public void execute() {
         if (left_speed < -5 || right_speed > 5) {
             m_drive.chaseBall(left_speed, right_speed);
@@ -41,16 +41,16 @@ public class Kuchota extends CommandBase {
         }
         System.out.println("in execute");
     }
-
+    
     public boolean isFinished() {
         return false;
     }
-
+    
     public void end() {
-
+        
     }
-
+    
     public void interrupted() {
-
+        
     }
 }

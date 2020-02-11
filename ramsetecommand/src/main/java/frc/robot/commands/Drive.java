@@ -24,17 +24,17 @@ public class Drive extends CommandBase {
     private final DriveSubsystem m_drive;
     
     public Drive(DriveSubsystem drive_subsystem, Shifter shifter_subsystem, DoubleSupplier forward, DoubleSupplier rotation) {
-       m_forward = forward;
-       m_rotation = rotation;
-       m_drive = drive_subsystem;
-
-       m_shifter = shifter_subsystem;
+        m_forward = forward;
+        m_rotation = rotation;
+        m_drive = drive_subsystem;
+        
+        m_shifter = shifter_subsystem;
         addRequirements(drive_subsystem, shifter_subsystem);
     }
     
     public void initialize() {
     }
-
+    
     public void execute() {
         Double rotation;
         DoubleSolenoid.Value shifter_state = m_shifter.getShifter();
@@ -46,16 +46,16 @@ public class Drive extends CommandBase {
         //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
         m_drive.arcadeDrive(m_forward.getAsDouble()*-1, rotation);
     }
-
+    
     public boolean isFinished() {
         return false;
     }
-
+    
     public void end() {
-
+        
     }
-
+    
     public void interrupted() {
-
+        
     }
 }
