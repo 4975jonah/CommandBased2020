@@ -29,6 +29,7 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.BallHolder;
+import frc.robot.commands.HoldBall;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
 import frc.robot.subsystems.Limelight;
@@ -42,6 +43,8 @@ import frc.robot.commands.Cintake;
 import frc.robot.subsystems.Sintake;
 import frc.robot.commands.Extend_Climber;
 import frc.robot.commands.Kuchota;
+import frc.robot.commands.Aim;
+import frc.robot.subsystems.Aimer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
@@ -60,6 +63,7 @@ public class RobotContainer {
   private final Limelight m_limelight = new Limelight();
   private final Pneu_Climber m_pclimber = new Pneu_Climber();
   private final Sintake m_sintake = new Sintake();
+  private final Aimer m_aimer = new Aimer();
   
   // The driver's controller
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -95,13 +99,13 @@ public class RobotContainer {
       .whenReleased(() -> m_robotDrive.setMaxOutput(1));
 
       new JoystickButton(m_driverController, Button.kStickLeft.value).whileHeld(new UpShift(m_shifter));
-      new JoystickButton(m_driverController, Button.kX.value).whenPressed(() -> m_ballholder.Extend());
-      new JoystickButton(m_driverController, Button.kX.value).whenPressed(() -> m_ballholder.Retract());
+      new JoystickButton(m_driverController, Button.kX.value).whenPressed(new HoldBall(m_ballholder));
       new JoystickButton(m_driverController, Button.kA.value).whileHeld(new Shoot(m_shooter));
       new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
       new JoystickButton(m_driverController, Button.kBack.value).whenPressed(new Extend_Climber(m_pclimber));
       new JoystickButton(m_driverController, Button.kBack.value).whenReleased(new Extend_Climber(m_pclimber));
       new JoystickButton(m_driverController, Button.kB.value).whileHeld(new Cintake(m_sintake));
+      new JoystickButton(m_driverController, Button.kStart.value).whenPressed(new Aim(m_aimer));
     }
     
     
