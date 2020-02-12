@@ -68,4 +68,18 @@ public final class Constants {
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
   }
+  public static final class PneumaticsConstants {
+    public static final int mod0 = 0;
+    public static final int mod1 = 1;
+    public static final int port0 = 0;
+    public static final int port1 = 1;
+    public static final int port2 = 2;
+    public static final int port3 = 3;
+    public static final int port4 = 4;
+    public static final int port5 = 5;
+    public static final int port6 = 6;
+    public static final int port7 = 7;
+
+
+  }
 }
