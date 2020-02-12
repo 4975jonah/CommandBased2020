@@ -97,8 +97,8 @@ public class RobotContainer {
       new JoystickButton(m_driverController, Button.kStickLeft.value).whileHeld(new UpShift(m_shifter));
       new JoystickButton(m_driverController, Button.kX.value).whenPressed(() -> m_ballholder.Extend());
       new JoystickButton(m_driverController, Button.kX.value).whenPressed(() -> m_ballholder.Retract());
-      new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Shoot(m_shooter));
-      new JoystickButton(m_driverController, Button.kX.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
+      new JoystickButton(m_driverController, Button.kA.value).whileHeld(new Shoot(m_shooter));
+      new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
       new JoystickButton(m_driverController, Button.kBack.value).whenPressed(new Extend_Climber(m_pclimber));
       new JoystickButton(m_driverController, Button.kBack.value).whenReleased(new Extend_Climber(m_pclimber));
       new JoystickButton(m_driverController, Button.kB.value).whileHeld(new Cintake(m_sintake));

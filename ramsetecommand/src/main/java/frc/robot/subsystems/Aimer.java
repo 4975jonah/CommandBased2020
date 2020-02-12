@@ -10,10 +10,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.Constants;
 
 public class Aimer extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
-  private final DoubleSolenoid m_aimer = new DoubleSolenoid(6,7,0);
+  private final DoubleSolenoid m_aimer = 
+  new DoubleSolenoid(Constants.PneumaticsConstants.mod0,Constants.PneumaticsConstants.port7 , Constants.PneumaticsConstants.port6);
 
   public DoubleSolenoid.Value AimUp() {
     // Aims Up
