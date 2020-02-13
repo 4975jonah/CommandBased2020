@@ -10,10 +10,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.Constants;
 
 public class Shifter extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
-  private final DoubleSolenoid m_shifter = new DoubleSolenoid(0,1,0);
+  private final DoubleSolenoid m_shifter = 
+  new DoubleSolenoid(Constants.PneumaticsConstants.mod0,Constants.PneumaticsConstants.port2 ,Constants.PneumaticsConstants.port3);
   
   public DoubleSolenoid.Value UpShift() {
     // Shifts Up
