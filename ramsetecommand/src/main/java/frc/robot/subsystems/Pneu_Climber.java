@@ -10,27 +10,25 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import frc.robot.Constants;
 
-public class Shifter extends SubsystemBase {
-  // The double solenoid that extends and retracts the cylinder.
-  private final DoubleSolenoid m_shifter = 
-  new DoubleSolenoid(Constants.PneumaticsConstants.mod0,Constants.PneumaticsConstants.port2 ,Constants.PneumaticsConstants.port3);
-  
-  public DoubleSolenoid.Value UpShift() {
-    // Shifts Up
-    m_shifter.set(Value.kForward);
-    return m_shifter.get();
-  }
-  
-  public DoubleSolenoid.Value DownShift() {
-    // Shifts Down
-    m_shifter.set(Value.kReverse);
-    return m_shifter.get();
-  }
-  
-  public DoubleSolenoid.Value getShifter() {
-    //returns the value of the double solenoid
-    return m_shifter.get();
-  }
+public class Pneu_Climber extends SubsystemBase {
+    // The double solenoid that extends and retracts the cylinder.
+    private final DoubleSolenoid m_climber = new DoubleSolenoid(4,5,0);
+    
+    public DoubleSolenoid.Value Extend() {
+        // Shifts Up
+        m_climber.set(Value.kForward);
+        return m_climber.get();
+    }
+    
+    public DoubleSolenoid.Value Retract() {
+        // Shifts Down
+        m_climber.set(Value.kReverse);
+        return m_climber.get();
+    }
+    
+    public DoubleSolenoid.Value getShifter() {
+        //returns the value of the double solenoid
+        return m_climber.get();
+    }
 }

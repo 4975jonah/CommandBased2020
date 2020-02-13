@@ -12,25 +12,25 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Constants;
 
-public class Shifter extends SubsystemBase {
+public class Aimer extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
-  private final DoubleSolenoid m_shifter = 
-  new DoubleSolenoid(Constants.PneumaticsConstants.mod0,Constants.PneumaticsConstants.port2 ,Constants.PneumaticsConstants.port3);
-  
-  public DoubleSolenoid.Value UpShift() {
-    // Shifts Up
-    m_shifter.set(Value.kForward);
-    return m_shifter.get();
+  private final DoubleSolenoid m_aimer = 
+  new DoubleSolenoid(Constants.PneumaticsConstants.mod0,Constants.PneumaticsConstants.port7 , Constants.PneumaticsConstants.port6);
+
+  public DoubleSolenoid.Value AimUp() {
+    // Aims Up
+        m_aimer.set(Value.kForward);
+        return m_aimer.get();
   }
-  
-  public DoubleSolenoid.Value DownShift() {
-    // Shifts Down
-    m_shifter.set(Value.kReverse);
-    return m_shifter.get();
-  }
-  
-  public DoubleSolenoid.Value getShifter() {
+
+  public DoubleSolenoid.Value AimDown() {
+       // Aims Down
+      m_aimer.set(Value.kReverse);
+      return m_aimer.get();
+    }
+
+  public DoubleSolenoid.Value getAimer() {
     //returns the value of the double solenoid
-    return m_shifter.get();
-  }
+    return m_aimer.get();
+    }
 }
