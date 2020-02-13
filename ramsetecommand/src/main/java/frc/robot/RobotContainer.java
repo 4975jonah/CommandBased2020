@@ -34,7 +34,6 @@ import frc.robot.subsystems.Shifter;
 import frc.robot.subsystems.Limelight;
 import frc.robot.commands.Drive;
 import frc.robot.commands.UpShift;
-import frc.robot.commands.DownShift;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Pneu_Climber;
 import frc.robot.commands.Shoot;
