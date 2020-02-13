@@ -44,6 +44,8 @@ import frc.robot.commands.Kuchota;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
+import frc.robot.autonomousroutines.DriveStraight10;
+
 /**
 * This class is where the bulk of the robot should be declared.  Since Command-based is a
 * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -71,7 +73,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     
-    // Configure default commands
+    // Configure defaramseteCommand.ramseteCommandult commands
     // Set the default drive command to split-stick arcade drive
       m_robotDrive.setDefaultCommand(
           new Drive(
@@ -113,7 +115,9 @@ public class RobotContainer {
     */
     
     public Command getAutonomousCommand() {
+      new DriveStraight10(m_ballholder);
       
+      /*
       // Create a voltage constraint to ensure we don't accelerate too fast
       var autoVoltageConstraint =
       new DifferentialDriveVoltageConstraint(
@@ -128,10 +132,7 @@ public class RobotContainer {
       new TrajectoryConfig(AutoConstants.kMaxSpeedMetersPerSecond,
       AutoConstants.kMaxAccelerationMetersPerSecondSquared)
       // Add kinematics to ensure max speed is actually obeyed
-      .setKinematics(DriveConstants.kDriveKinematics)
-      // Apply the voltage constraint
-      .addConstraint(autoVoltageConstraint);
-      
+      .setKinematics(DriveConstants.kDriveKinematics)ramseteCommand.ramseteCommand
       // An example trajectory to follow.  All units in meters.
       Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
       // Start at the origin facing the +X direction
@@ -149,9 +150,7 @@ public class RobotContainer {
       
       RamseteCommand ramseteCommand = new RamseteCommand(
       exampleTrajectory,
-      m_robotDrive::getPose,
-      new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
-      new SimpleMotorFeedforward(DriveConstants.ksVolts,
+      m_robotDrive::getPoseramseteCommand.ramseteCommandrward(DriveConstants.ksVolts,
       DriveConstants.kvVoltSecondsPerMeter,
       DriveConstants.kaVoltSecondsSquaredPerMeter),
       DriveConstants.kDriveKinematics,
@@ -165,6 +164,8 @@ public class RobotContainer {
       
       // Run path following command, then stop at the end.
       return ramseteCommand.andThen(() -> m_robotDrive.tankDriveVolts(0, 0));
+      */
+      return new DriveStraight10(m_ballholder);
     }
   }
   

@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.subsystems.BallHolder;
 
-public class HoldBall extends CommandBase {
+public class ReleaseBall extends CommandBase {
     private final BallHolder m_ballholder;
     private DoubleSolenoid.Value m_currentPosition;
     
-    public HoldBall(BallHolder BallHolder_subsystem) {
+    public ReleaseBall(BallHolder BallHolder_subsystem) {
         m_ballholder = BallHolder_subsystem;
         addRequirements(BallHolder_subsystem);
     }
@@ -23,16 +23,10 @@ public class HoldBall extends CommandBase {
     
     public void execute() {
         
-        if(m_currentPosition == Value.kForward) {
-            
-            System.out.println("Holder retract in HoldBall.execute"); 
-            m_ballholder.Retract();
-            
-        } 
-        else {
-            
-            System.out.println("Holder Extend in HoldBall.execute");
+        if(m_currentPosition == Value.kReverse) {
             m_ballholder.Extend();
+        }else{
+            m_ballholder.Retract();
             
         }
         
