@@ -9,21 +9,21 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Pneu_Climber;;
 
-public class Extend_Climber extends CommandBase {
+public class Retract_Climber extends CommandBase {
     private final Pneu_Climber m_climber;
     
-    public Extend_Climber(Pneu_Climber pneu_climber) {
+    public Retract_Climber(Pneu_Climber pneu_climber) {
         m_climber = pneu_climber;
         addRequirements(m_climber);
     }
     
     public void initialize() {
-        m_climber.Extend();
+        m_climber.Retract();
     }
     
     public void execute() {
         //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
-        m_climber.Extend();
+        m_climber.Retract();
     }
     
     public boolean isFinished() {

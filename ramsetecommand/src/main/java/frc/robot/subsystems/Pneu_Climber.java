@@ -14,7 +14,8 @@ import frc.robot.Constants;
 
 public class Pneu_Climber extends SubsystemBase {
     // The double solenoid that extends and retracts the cylinder.
-    private final DoubleSolenoid m_climber = new DoubleSolenoid(Constants.Pneumatics.Mod0.mod,Constants.Pneumatics.Mod0.port5,Constants.Pneumatics.Mod0.port0);
+    private final DoubleSolenoid m_climber = new DoubleSolenoid(Constants.Pneumatics.Mod0.mod,Constants.Pneumatics.Mod0.port1,
+    Constants.Pneumatics.Mod0.port0);
     
     public DoubleSolenoid.Value Extend() {
         // Shifts Up

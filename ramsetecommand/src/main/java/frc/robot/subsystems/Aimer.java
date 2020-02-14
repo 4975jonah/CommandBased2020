@@ -15,7 +15,7 @@ import frc.robot.Constants;
 public class Aimer extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
   private final DoubleSolenoid m_aimer = 
-  new DoubleSolenoid(Constants.Pneumatics.Mod0.mod, Constants.Pneumatics.Mod0.port7 , Constants.Pneumatics.Mod0.port6);
+  new DoubleSolenoid(Constants.Pneumatics.Mod0.mod, Constants.Pneumatics.Mod0.port4 , Constants.Pneumatics.Mod0.port5);
 
   public DoubleSolenoid.Value AimUp() {
     // Aims Up

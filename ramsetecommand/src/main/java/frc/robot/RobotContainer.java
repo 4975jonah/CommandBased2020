@@ -30,6 +30,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.BallHolder;
 import frc.robot.commands.HoldBall;
+import frc.robot.commands.ReleaseBall;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shifter;
 import frc.robot.subsystems.Limelight;
@@ -37,13 +38,16 @@ import frc.robot.subsystems.ColorSensor;
 import frc.robot.commands.AlignColor;
 import frc.robot.commands.Drive;
 import frc.robot.commands.UpShift;
+import frc.robot.commands.DownShift;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Pneu_Climber;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Cintake;
 import frc.robot.subsystems.Sintake;
 import frc.robot.commands.Extend_Climber;
+import frc.robot.commands.Retract_Climber;
 import frc.robot.commands.Kuchota;
+import frc.robot.commands.StopShooter;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.commands.Aim;
 import frc.robot.subsystems.Aimer;
@@ -106,18 +110,21 @@ public class RobotContainer {
     */
     private void configureButtonBindings() {
       // Drive at half speed when the right bumper is held
-      new JoystickButton(m_driverController, Button.kStart.value)
+      /*new JoystickButton(m_driverController, Button.kStart.value)
       .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
-      .whenReleased(() -> m_robotDrive.setMaxOutput(1));
+      .whenReleased(() -> m_robotDrive.setMaxOutput(1));*/
 
-      new JoystickButton(m_driverController, Button.kStickLeft.value).whileHeld(new UpShift(m_shifter));
-      new JoystickButton(m_driverController, Button.kX.value).whenPressed(new HoldBall(m_ballholder));
+      new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(new UpShift(m_shifter));
+      new JoystickButton(m_driverController, Button.kBumperLeft.value).whenReleased(new DownShift(m_shifter));
       new JoystickButton(m_driverController, Button.kA.value).whileHeld(new Shoot(m_shooter));
+      new JoystickButton(m_driverController, Button.kA.value).whileHeld(new ReleaseBall(m_ballholder));
+      new JoystickButton(m_driverController, Button.kA.value).whenReleased(new StopShooter(m_shooter));
+      new JoystickButton(m_driverController, Button.kA.value).whenReleased(new HoldBall(m_ballholder));
       new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
-      new JoystickButton(m_driverController, Button.kBack.value).whenPressed(new Extend_Climber(m_pclimber));
-      new JoystickButton(m_driverController, Button.kBack.value).whenReleased(new Extend_Climber(m_pclimber));
+      new JoystickButton(m_driverController, Button.kBack.value).whenPressed(new Retract_Climber(m_pclimber));
+      new JoystickButton(m_driverController, Button.kStart.value).whenReleased(new Extend_Climber(m_pclimber));
       new JoystickButton(m_driverController, Button.kB.value).whileHeld(new Cintake(m_sintake));
-      new JoystickButton(m_driverController, Button.kStart.value).whenPressed(new Aim(m_aimer));
+      //new JoystickButton(m_driverController, Button.kStart.value).whenPressed(new Aim(m_aimer));
     }
     
     

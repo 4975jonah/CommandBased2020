@@ -22,20 +22,16 @@ public class Shoot extends CommandBase {
     }
     
     public void execute() {
-        //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
         m_shooter.Shoot();
     }
     
     public boolean isFinished() {
-        m_shooter.Stop();
-        return true;
+        return false;
     }
     
     public void end() {
-        m_shooter.Stop();
     }
     
     public void interrupted() {
-        m_shooter.Stop();
     }
 }
