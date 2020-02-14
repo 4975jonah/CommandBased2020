@@ -29,5 +29,8 @@ public class Sintake extends SubsystemBase {
         // Shifts Down
         m_intake.set(ControlMode.PercentOutput, 0.0);
     }
+    public double getSintake() {
+        return m_intake.getMotorOutputPercent();
+    }
     
 }

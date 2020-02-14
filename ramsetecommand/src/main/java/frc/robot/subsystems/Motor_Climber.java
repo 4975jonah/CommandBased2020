@@ -16,8 +16,8 @@ public class Motor_Climber extends SubsystemBase {
     private final VictorSPX m_leader = new VictorSPX(Constants.CANBusIDs.Climber.climb1);
     private final VictorSPX m_follower = new VictorSPX(Constants.CANBusIDs.Climber.climb2);
 
-    public void climbUp() {
-        m_leader.set(ControlMode.PercentOutput, 0.5);
+    public void climbUp(double speed) {
+        m_leader.set(ControlMode.PercentOutput, speed);
         m_follower.set(ControlMode.Follower, 5);
     }
     

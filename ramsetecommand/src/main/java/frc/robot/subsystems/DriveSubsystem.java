@@ -190,10 +190,7 @@ public class DriveSubsystem extends SubsystemBase {
 */
   
   /**
-  * Returns the turn rate of the robot.
-  *
-  * @return The turn rate of the robot, in degrees per second
-  */
+  * Returns the turn rate of the robot/
 /*
   public double getTurnRate() {
     return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
