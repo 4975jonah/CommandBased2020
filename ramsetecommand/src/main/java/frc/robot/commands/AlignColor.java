@@ -27,8 +27,12 @@ public class AlignColor extends CommandBase {
 
     public void execute() {
         m_colorsensor.checkColor();
+        m_colorsensor.checkRedYellow();
+        m_colorsensor.checkGreen();
+        m_colorsensor.checkBlue();
     }
     public boolean isFinished() {
+        //m_controlpanel.stop();
         return false;
     }
 
