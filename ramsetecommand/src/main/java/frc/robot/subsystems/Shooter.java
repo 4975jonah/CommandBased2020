@@ -9,11 +9,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.Constants.DriveConstants;
 
 public class Shooter extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
-  private final CANSparkMax m_top = new CANSparkMax(5, MotorType.kBrushless);
-  private final CANSparkMax m_bottom = new CANSparkMax(6, MotorType.kBrushless);
+  private final CANSparkMax m_top = new CANSparkMax(DriveConstants.shooterTop, MotorType.kBrushless);
+  private final CANSparkMax m_bottom = new CANSparkMax(DriveConstants.shooterBottom, MotorType.kBrushless);
   
   public void Shoot() {
     // Shoots from _____

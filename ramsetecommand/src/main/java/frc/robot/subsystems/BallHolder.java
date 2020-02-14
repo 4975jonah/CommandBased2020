@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Constants;
 
-
 public class BallHolder extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
   private final DoubleSolenoid m_ballholder = 

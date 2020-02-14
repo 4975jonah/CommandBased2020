@@ -7,26 +7,27 @@
 
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import frc.robot.Constants.DriveConstants;
 
 public class Sintake extends SubsystemBase {
     // The double solenoid that extends and retracts the cylinder.
-    private final CANSparkMax m_intake = new CANSparkMax(6, MotorType.kBrushless);
+    private final VictorSPX m_intake = new VictorSPX(DriveConstants.intake);
     
     public void Intake() {
         // Shoots from _____
-        m_intake.set(1.0);
+        m_intake.set(ControlMode.PercentOutput, 1.0);
     }
 
     public void Eject() {
         // Shoots from _____
-        m_intake.set(-1.0);
+        m_intake.set(ControlMode.PercentOutput, -1.0);
     }
     
     public void Stop() {
         // Shifts Down
-        m_intake.set(0.0);
+        m_intake.set(ControlMode.PercentOutput, 0.0);
     }
     
 }
