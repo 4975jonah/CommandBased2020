@@ -15,7 +15,7 @@ import frc.robot.Constants;
 public class Shifter extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
   private final DoubleSolenoid m_shifter = 
-  new DoubleSolenoid(Constants.PneumaticsConstants.mod0,Constants.PneumaticsConstants.port2 ,Constants.PneumaticsConstants.port3);
+  new DoubleSolenoid(Constants.Pneumatics.Mod0.mod,Constants.Pneumatics.Mod0.port2 ,Constants.Pneumatics.Mod0.port3);
   
   public DoubleSolenoid.Value UpShift() {
     // Shifts Up

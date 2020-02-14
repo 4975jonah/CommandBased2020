@@ -9,12 +9,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants;
 
 public class Motor_Climber extends SubsystemBase {
     // The double solenoid that extends and retracts the cylinder.
-    private final VictorSPX m_leader = new VictorSPX(DriveConstants.climber1);
-    private final VictorSPX m_follower = new VictorSPX(DriveConstants.climber2);
+    private final VictorSPX m_leader = new VictorSPX(Constants.CANBusIDs.Climber.climb1);
+    private final VictorSPX m_follower = new VictorSPX(Constants.CANBusIDs.Climber.climb2);
 
     public void climbUp() {
         m_leader.set(ControlMode.PercentOutput, 0.5);
