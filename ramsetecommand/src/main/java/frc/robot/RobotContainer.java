@@ -71,7 +71,6 @@ public class RobotContainer {
   private final Pneu_Climber m_pclimber = new Pneu_Climber();
   private final Sintake m_sintake = new Sintake();
   private final Aimer m_aimer = new Aimer();
-  
   // The driver's controller
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
   

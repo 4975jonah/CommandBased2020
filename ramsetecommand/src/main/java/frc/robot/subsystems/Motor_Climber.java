@@ -7,29 +7,28 @@
 
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import frc.robot.Constants.DriveConstants;
 
 public class Motor_Climber extends SubsystemBase {
     // The double solenoid that extends and retracts the cylinder.
-    private final CANSparkMax m_leader = new CANSparkMax(8, MotorType.kBrushless);
-    private final CANSparkMax m_follower = new CANSparkMax(9, MotorType.kBrushless);
+    private final VictorSPX m_leader = new VictorSPX(DriveConstants.climber1);
+    private final VictorSPX m_follower = new VictorSPX(DriveConstants.climber2);
 
     public void climbUp() {
-        // Shoots from _____
-        m_leader.set(0.5);
-        m_follower.set(0.5);
+        m_leader.set(ControlMode.PercentOutput, 0.5);
+        m_follower.set(ControlMode.Follower, 5);
     }
     
     public void climbDown() {
-        // Shifts Down
-        m_leader.set(-0.5);
-        m_follower.set(-0.5);
+        m_leader.set(ControlMode.PercentOutput, -0.5);
+        m_follower.set(ControlMode.Follower, 5);
     }
     
     public void Stop() {
-        m_leader.set(0.0);
-        m_follower.set(0.0);
+        m_leader.set(ControlMode.PercentOutput, 0.0);
+        m_follower.set(ControlMode.Follower, 5);
     }
     
 }
