@@ -25,13 +25,11 @@ public class HoldBall extends CommandBase {
 
         if(m_currentPosition == Value.kForward) {
 
-           System.out.println("Holder retract in HoldBall.execute"); 
            m_ballholder.Retract();
            
         } 
         else {
 
-           System.out.println("Holder Extend in HoldBall.execute");
            m_ballholder.Extend();
 
         }
