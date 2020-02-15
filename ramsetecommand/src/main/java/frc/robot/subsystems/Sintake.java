@@ -9,11 +9,11 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; //https://www.javatpoint.com/operators-in-java
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants;
 
 public class Sintake extends SubsystemBase {
     // The double solenoid that extends and retracts the cylinder.
-    private final VictorSPX m_intake = new VictorSPX(DriveConstants.intake);
+    private final VictorSPX m_intake = new VictorSPX(Constants.CANBusIDs.intake);
     
     public void Intake() {
         // Shoots from _____
@@ -28,6 +28,9 @@ public class Sintake extends SubsystemBase {
     public void Stop() {
         // Shifts Down
         m_intake.set(ControlMode.PercentOutput, 0.0);
+    }
+    public double getSintake() {
+        return m_intake.getMotorOutputPercent();
     }
     
 }

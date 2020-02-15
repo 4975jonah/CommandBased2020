@@ -18,18 +18,26 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 * constants are needed, to reduce verbosity.
 */
 public final class Constants {
-  public static final class DriveConstants {
-    public static final int kLeftMotor1Port = 1;
-    public static final int kLeftMotor2Port = 3;
-    public static final int kRightMotor1Port = 2;
-    public static final int kRightMotor2Port = 4;
-    public static final int climber1 = 5;
-    public static final int climber2 = 6;
+  public static final class CANBusIDs {
+    public static final class Drive {
+      public static final int kLeftMotor1Port = 1;
+      public static final int kLeftMotor2Port = 3;
+      public static final int kRightMotor1Port = 2;
+      public static final int kRightMotor2Port = 4;
+    }
+    public static final class Climber {
+      public static final int climb1 = 5;
+      public static final int climb2 = 6;
+    }
+    public static final class Shooter {
+      public static final int top = 9;
+      public static final int bottom = 10;
+    }
     public static final int intake = 7;
     public static final int extra = 8;
-    public static final int shooterTop = 9;
-    public static final int shooterBottom = 10;
-    
+  }
+
+  public static final class DriveConstants {
     public static final double kRotationMultiplier = 0.3;
     
     public static final int[] kLeftEncoderPorts = new int[]{0, 1};
@@ -60,6 +68,7 @@ public final class Constants {
   
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kHelperControllerPort = 1;
   }
   
   public static final class AutoConstants {
@@ -70,18 +79,28 @@ public final class Constants {
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
   }
-  public static final class PneumaticsConstants {
-    public static final int mod0 = 0;
-    public static final int mod1 = 1;
-    public static final int port0 = 0;
-    public static final int port1 = 1;
-    public static final int port2 = 2;
-    public static final int port3 = 3;
-    public static final int port4 = 4;
-    public static final int port5 = 5;
-    public static final int port6 = 6;
-    public static final int port7 = 7;
-
-
+  public static final class Pneumatics {
+    public static final class Mod0 {
+      public static final int mod = 0;
+      public static final int port0 = 0;
+      public static final int port1 = 1;
+      public static final int port2 = 2;
+      public static final int port3 = 3;
+      public static final int port4 = 4;
+      public static final int port5 = 5;
+      public static final int port6 = 6;
+      public static final int port7 = 7;
+    }
+    public static final class Mod1 {
+      public static final int mod = 1;
+      public static final int port0 = 0;
+      public static final int port1 = 1;
+      public static final int port2 = 2;
+      public static final int port3 = 3;
+      public static final int port4 = 4;
+      public static final int port5 = 5;
+      public static final int port6 = 6;
+      public static final int port7 = 7;
+    }
   }
 }

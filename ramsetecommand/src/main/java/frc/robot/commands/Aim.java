@@ -17,19 +17,15 @@ public class Aim extends CommandBase {
         m_aimPosition = m_aimer.getAimer();
     }
     public void execute() {
-        
-        if (m_aimPosition == Value.kForward){
-            System.out.print("Aiming Down in Aim.execute");
+        DoubleSolenoid.Value shifter_state = m_aimer.getAimer();
+        if (shifter_state == Value.kForward) {
             m_aimer.AimDown();
-        }
-        else {
-            System.out.print("Aiming Up in Aim.execute");
+        } else {
             m_aimer.AimUp();
         }
     }
     
     public boolean isFinished() {
-        
         return true;
     }
     

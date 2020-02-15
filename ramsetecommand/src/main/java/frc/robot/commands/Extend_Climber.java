@@ -27,15 +27,12 @@ public class Extend_Climber extends CommandBase {
     }
     
     public boolean isFinished() {
-        m_climber.Retract();
         return true;
     }
     
     public void end() {
-        m_climber.Retract();
     }
     
     public void interrupted() {
-        m_climber.Retract();
     }
 }

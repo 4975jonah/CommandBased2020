@@ -18,24 +18,20 @@ public class Cintake extends CommandBase {
     }
     
     public void initialize() {
-        m_sintake.Intake();
+            m_sintake.Intake();
     }
     
     public void execute() {
-        //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
-        m_sintake.Intake();
+            m_sintake.Intake();
     }
     
     public boolean isFinished() {
-        m_sintake.Stop();
         return true;
     }
     
     public void end() {
-        m_sintake.Stop();
     }
     
     public void interrupted() {
-        m_sintake.Stop();
     }
 }

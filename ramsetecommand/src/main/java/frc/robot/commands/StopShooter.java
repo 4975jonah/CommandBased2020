@@ -7,40 +7,31 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ColorSensor;
-import frc.robot.subsystems.ControlPanel;
+import frc.robot.subsystems.Shooter;
 
-public class AlignColor extends CommandBase {
-    private final ControlPanel m_controlpanel;
-    private final ColorSensor m_colorsensor;
+public class StopShooter extends CommandBase {
+    private final Shooter m_shooter;
     
-    
-    public AlignColor(ControlPanel controlpanel, ColorSensor ColorSensor) {
-        m_controlpanel = controlpanel;
-        m_colorsensor = ColorSensor;
-        addRequirements(controlpanel, ColorSensor);
+    public StopShooter(Shooter shooter) {
+        m_shooter = shooter;
+        addRequirements(shooter);
     }
     
     public void initialize() {
-        //m_controlpanel.Spin();
+        m_shooter.Stop();
     }
     
     public void execute() {
-        m_colorsensor.checkColor();
-        m_colorsensor.checkRedYellow();
-        m_colorsensor.checkGreen();
-        m_colorsensor.checkBlue();
+        m_shooter.Stop();
     }
+    
     public boolean isFinished() {
-        //m_controlpanel.stop();
         return false;
     }
     
     public void end() {
-        
     }
     
     public void interrupted() {
-        
     }
 }

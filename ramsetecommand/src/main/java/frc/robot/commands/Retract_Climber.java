@@ -7,40 +7,32 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ColorSensor;
-import frc.robot.subsystems.ControlPanel;
+import frc.robot.subsystems.Pneu_Climber;;
 
-public class AlignColor extends CommandBase {
-    private final ControlPanel m_controlpanel;
-    private final ColorSensor m_colorsensor;
+public class Retract_Climber extends CommandBase {
+    private final Pneu_Climber m_climber;
     
-    
-    public AlignColor(ControlPanel controlpanel, ColorSensor ColorSensor) {
-        m_controlpanel = controlpanel;
-        m_colorsensor = ColorSensor;
-        addRequirements(controlpanel, ColorSensor);
+    public Retract_Climber(Pneu_Climber pneu_climber) {
+        m_climber = pneu_climber;
+        addRequirements(m_climber);
     }
     
     public void initialize() {
-        //m_controlpanel.Spin();
+        m_climber.Retract();
     }
     
     public void execute() {
-        m_colorsensor.checkColor();
-        m_colorsensor.checkRedYellow();
-        m_colorsensor.checkGreen();
-        m_colorsensor.checkBlue();
+        //System.out.println("shifter state is " + shifter_state + " forward is " + m_forward.getAsDouble());
+        m_climber.Retract();
     }
+    
     public boolean isFinished() {
-        //m_controlpanel.stop();
-        return false;
+        return true;
     }
     
     public void end() {
-        
     }
     
     public void interrupted() {
-        
     }
 }

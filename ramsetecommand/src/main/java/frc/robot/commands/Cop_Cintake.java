@@ -7,40 +7,31 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ColorSensor;
-import frc.robot.subsystems.ControlPanel;
+import frc.robot.subsystems.Sintake;
 
-public class AlignColor extends CommandBase {
-    private final ControlPanel m_controlpanel;
-    private final ColorSensor m_colorsensor;
+public class Cop_Cintake extends CommandBase {
+    private final Sintake m_sintake;
     
-    
-    public AlignColor(ControlPanel controlpanel, ColorSensor ColorSensor) {
-        m_controlpanel = controlpanel;
-        m_colorsensor = ColorSensor;
-        addRequirements(controlpanel, ColorSensor);
+    public Cop_Cintake(Sintake sintake) {
+        m_sintake = sintake;
+        addRequirements(m_sintake);
     }
     
     public void initialize() {
-        //m_controlpanel.Spin();
+            m_sintake.Stop();
     }
     
     public void execute() {
-        m_colorsensor.checkColor();
-        m_colorsensor.checkRedYellow();
-        m_colorsensor.checkGreen();
-        m_colorsensor.checkBlue();
+            m_sintake.Stop();
     }
+    
     public boolean isFinished() {
-        //m_controlpanel.stop();
-        return false;
+        return true;
     }
     
     public void end() {
-        
     }
     
     public void interrupted() {
-        
     }
 }

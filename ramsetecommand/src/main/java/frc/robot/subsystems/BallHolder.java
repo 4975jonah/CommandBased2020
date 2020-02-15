@@ -8,7 +8,7 @@ import frc.robot.Constants;
 public class BallHolder extends SubsystemBase {
   // The double solenoid that extends and retracts the cylinder.
   private final DoubleSolenoid m_ballholder = 
-  new DoubleSolenoid(Constants.PneumaticsConstants.mod0, Constants.PneumaticsConstants.port1 , Constants.PneumaticsConstants.port0);
+  new DoubleSolenoid(Constants.Pneumatics.Mod0.mod, Constants.Pneumatics.Mod0.port6 , Constants.Pneumatics.Mod0.port7);
 
   public DoubleSolenoid.Value Extend() {
     // Extends BallHolder
