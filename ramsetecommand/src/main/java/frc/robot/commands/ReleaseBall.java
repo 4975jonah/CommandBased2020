@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.subsystems.BallHolder;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 
 public class ReleaseBall extends CommandBase {
     private final BallHolder m_ballholder;
@@ -13,6 +15,8 @@ public class ReleaseBall extends CommandBase {
     public ReleaseBall(BallHolder BallHolder_subsystem) {
         m_ballholder = BallHolder_subsystem;
         addRequirements(BallHolder_subsystem);
+
+
     }
     
     public void initialize() {
@@ -24,8 +28,11 @@ public class ReleaseBall extends CommandBase {
     public void execute() {
         
         if(m_currentPosition == Value.kReverse) {
+            System.out.println("in releaseball");
             m_ballholder.Extend();
+
         }else{
+            System.out.println("in releasebal");
             m_ballholder.Retract();
             
         }
@@ -40,7 +47,8 @@ public class ReleaseBall extends CommandBase {
     
     
     public boolean isFinished() {
-        return false;
+        
+        return true;
     }
     
     public void end() {

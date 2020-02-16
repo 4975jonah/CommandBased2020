@@ -1,7 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.subsystems.BallHolder;
@@ -25,11 +25,10 @@ public class HoldBall extends CommandBase {
         
         if(m_currentPosition == Value.kForward) {
             
-            System.out.println("Holder retract in HoldBall.execute"); 
+            System.out.println("Holder retract in HoldBall.execute");
             m_ballholder.Retract();
-            
-        } 
-        else {
+
+        } else {
             
             System.out.println("Holder Extend in HoldBall.execute");
             m_ballholder.Extend();
@@ -46,7 +45,7 @@ public class HoldBall extends CommandBase {
     
     
     public boolean isFinished() {
-        return false;
+        return true;
     }
     
     public void end() {

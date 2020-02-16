@@ -26,7 +26,7 @@ public class StopShooter extends CommandBase {
     }
     
     public boolean isFinished() {
-        return false;
+        return true;
     }
     
     public void end() {

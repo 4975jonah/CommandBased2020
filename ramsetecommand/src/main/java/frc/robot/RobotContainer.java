@@ -54,8 +54,11 @@ import frc.robot.commands.StopShooter;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.commands.Aim;
 import frc.robot.subsystems.Aimer;
+import frc.robot.commands.ReleaseShoot;
+import frc.robot.commands.HoldShoot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.XboxController.Button;
+
 
 import frc.robot.autonomousroutines.DriveStraight10;
 
@@ -126,10 +129,8 @@ public class RobotContainer {
 
       new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(new UpShift(m_shifter));
       new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(new DownShift(m_shifter));
-      new JoystickButton(m_driverController, Button.kA.value).whileHeld(new Shoot(m_shooter));
-      new JoystickButton(m_driverController, Button.kA.value).whileHeld(new ReleaseBall(m_ballholder));
-      new JoystickButton(m_driverController, Button.kA.value).whenReleased(new StopShooter(m_shooter));
-      new JoystickButton(m_driverController, Button.kA.value).whenReleased(new HoldBall(m_ballholder));
+      new JoystickButton(m_driverController, Button.kA.value).whileHeld(new ReleaseShoot(m_ballholder, m_shooter));
+      new JoystickButton(m_driverController, Button.kA.value).whenReleased(new HoldShoot(m_ballholder, m_shooter));
       new JoystickButton(m_driverController, Button.kY.value).whenPressed(new Aim(m_aimer));
       new JoystickButton(m_driverController, Button.kX.value).whileHeld(new Cintake(m_sintake));
       new JoystickButton(m_driverController, Button.kX.value).whenReleased(new Cop_Cintake(m_sintake));
@@ -137,6 +138,7 @@ public class RobotContainer {
 
       new JoystickButton(m_helperController, Button.kBumperLeft.value).whenPressed(new Retract_Climber(m_pclimber));
       new JoystickButton(m_helperController, Button.kBumperRight.value).whenReleased(new Extend_Climber(m_pclimber));
+
     }
     
     
