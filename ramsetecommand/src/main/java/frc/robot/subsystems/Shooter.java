@@ -18,7 +18,7 @@ public class Shooter extends SubsystemBase {
   
   public void Shoot() {
     // Shoots from _____
-    m_top.set(0.20);
+    m_top.set(0.40);
     m_bottom.set(1.0);
   }
   

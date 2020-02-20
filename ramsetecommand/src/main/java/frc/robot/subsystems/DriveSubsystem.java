@@ -31,6 +31,8 @@ public class DriveSubsystem extends SubsystemBase {
   private CANSparkMax rightLead = new CANSparkMax(Constants.CANBusIDs.Drive.kRightMotor2Port, MotorType.kBrushless);
   private CANSparkMax rightFollow = new CANSparkMax(Constants.CANBusIDs.Drive.kRightMotor1Port, MotorType.kBrushless);
   private final DifferentialDrive m_drive = new DifferentialDrive(leftLead, rightLead);
+
+  private int m_inversion = 1;
   
   private final AHRS m_gyro = new AHRS(SPI.Port.kMXP);
   
@@ -104,7 +106,15 @@ public class DriveSubsystem extends SubsystemBase {
   }
   
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
-    m_drive.arcadeDrive(leftSpeed, rightSpeed);
+    m_drive.arcadeDrive(leftSpeed*getInverted(), rightSpeed*getInverted());
+  }
+
+  public void Invert() {
+    m_inversion *= -1;
+  }
+
+  public int getInverted() {
+    return m_inversion;
   }
   
   /**

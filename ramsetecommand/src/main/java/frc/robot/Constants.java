@@ -24,6 +24,7 @@ public final class Constants {
       public static final int kLeftMotor2Port = 3;
       public static final int kRightMotor1Port = 2;
       public static final int kRightMotor2Port = 4;
+      
     }
     public static final class Climber {
       public static final int climb1 = 5;
@@ -44,6 +45,12 @@ public final class Constants {
     public static final int[] kRightEncoderPorts = new int[]{2, 3};
     public static final boolean kLeftEncoderReversed = false;
     public static final boolean kRightEncoderReversed = true;
+
+    public static final double kP = 1;
+    public static final double kI = 0;
+    public static final double kD = 0;
+    public static final double kDriveRateTolerance = 0.1;
+    public static final double kDriveAccelerationTolerance = 0.9;
     
     public static final double kTrackwidthMeters = 0.69;
     public static final DifferentialDriveKinematics kDriveKinematics =

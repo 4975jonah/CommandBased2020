@@ -27,16 +27,18 @@ public class ReleaseBall extends CommandBase {
     
     public void execute() {
         
+        m_ballholder.Retract();
+        /*
         if(m_currentPosition == Value.kReverse) {
             System.out.println("in releaseball");
-            m_ballholder.Extend();
+            m_ballholder.Retract();
 
         }else{
-            System.out.println("in releasebal");
+            System.out.println("in releaseball");
             m_ballholder.Retract();
-            
-        }
         
+        }
+      */  
         
     }
     

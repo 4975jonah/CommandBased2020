@@ -25,9 +25,11 @@ public class ReleaseShoot extends SequentialCommandGroup {
      m_ballholder = BallHolder;
      addRequirements(BallHolder, shooter);
 
-     addCommands(new Shoot(m_shooter),
-     new Wait(0.50),
+     addCommands(
+     new Shoot(m_shooter),
+     new Wait(1.0),
      new ReleaseBall(m_ballholder));
+     new Wait(100);
        
     }
 }

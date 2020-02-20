@@ -56,6 +56,7 @@ import frc.robot.commands.Aim;
 import frc.robot.subsystems.Aimer;
 import frc.robot.commands.ReleaseShoot;
 import frc.robot.commands.HoldShoot;
+import frc.robot.commands.Cuntake;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
@@ -126,7 +127,8 @@ public class RobotContainer {
       /*new JoystickButton(m_driverController, Button.kStart.value)
       .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
       .whenReleased(() -> m_robotDrive.setMaxOutput(1));*/
-
+      
+      new JoystickButton(m_driverController, Button.kB.value).whenPressed(() -> m_robotDrive.Invert());
       new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(new UpShift(m_shifter));
       new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(new DownShift(m_shifter));
       new JoystickButton(m_driverController, Button.kA.value).whileHeld(new ReleaseShoot(m_ballholder, m_shooter));
@@ -134,6 +136,8 @@ public class RobotContainer {
       new JoystickButton(m_driverController, Button.kY.value).whenPressed(new Aim(m_aimer));
       new JoystickButton(m_driverController, Button.kX.value).whileHeld(new Cintake(m_sintake));
       new JoystickButton(m_driverController, Button.kX.value).whenReleased(new Cop_Cintake(m_sintake));
+      new JoystickButton(m_driverController, Button.kBack.value).whileHeld(new Cuntake(m_sintake));
+      new JoystickButton(m_driverController, Button.kBack.value).whenReleased(new Cop_Cintake(m_sintake));
       //new JoystickButton(m_driverController, Button.kY.value).whileHeld(new Kuchota(m_robotDrive, m_limelight));
 
       new JoystickButton(m_helperController, Button.kBumperLeft.value).whenPressed(new Retract_Climber(m_pclimber));

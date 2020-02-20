@@ -24,8 +24,9 @@ public class HoldShoot extends SequentialCommandGroup {
         m_ballholder = BallHolder;
         addRequirements(BallHolder, shooter);
 
-        addCommands(new StopShooter(shooter),
+        addCommands(
+     new StopShooter(shooter),
      new HoldBall(m_ballholder));
     }
 }
- 
+    
