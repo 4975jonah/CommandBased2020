@@ -50,6 +50,7 @@ import frc.robot.commands.Cintake;
 import frc.robot.commands.Cop_Cintake;
 import frc.robot.subsystems.Sintake;
 import frc.robot.commands.Kuchota;
+import frc.robot.commands.Cuntake;
 import frc.robot.commands.StopShooter;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.commands.Aim;
@@ -127,7 +128,11 @@ public class RobotContainer {
       /*new JoystickButton(m_driverController, Button.kStart.value)
       .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
       .whenReleased(() -> m_robotDrive.setMaxOutput(1));*/
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> upstream/master
       new JoystickButton(m_driverController, Button.kB.value).whenPressed(() -> m_robotDrive.Invert());
       new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(new UpShift(m_shifter));
       new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(new DownShift(m_shifter));

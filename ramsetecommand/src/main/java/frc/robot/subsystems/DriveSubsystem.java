@@ -108,6 +108,13 @@ public class DriveSubsystem extends SubsystemBase {
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
     m_drive.arcadeDrive(leftSpeed*getInverted(), rightSpeed*getInverted());
   }
+<<<<<<< HEAD
+=======
+  
+  public double getHeading() {
+    return m_gyro.getAngle();
+  }
+>>>>>>> upstream/master
 
   public void Invert() {
     m_inversion *= -1;
@@ -123,9 +130,9 @@ public class DriveSubsystem extends SubsystemBase {
   * @param leftVolts  the commanded left output
   * @param rightVolts the commanded right output
   */
-  public void tankDriveVolts(double leftVolts, double rightVolts) {
-    leftLead.setVoltage(leftVolts);
-    rightLead.setVoltage(-rightVolts);
+  public void tankDrivePercent(double leftPercent, double rightPercent) {
+    leftLead.set(leftPercent);
+    rightLead.setVoltage(-rightPercent);
   }
   
   /**
