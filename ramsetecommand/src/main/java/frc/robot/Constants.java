@@ -24,6 +24,7 @@ public final class Constants {
       public static final int kLeftMotor2Port = 3;
       public static final int kRightMotor1Port = 2;
       public static final int kRightMotor2Port = 4;
+      
     }
     public static final class Climber {
       public static final int climb1 = 5;

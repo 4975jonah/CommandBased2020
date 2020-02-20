@@ -108,10 +108,6 @@ public class DriveSubsystem extends SubsystemBase {
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
     m_drive.arcadeDrive(leftSpeed*getInverted(), rightSpeed*getInverted());
   }
-  
-  public double getHeading() {
-    return m_gyro.getAngle();
-  }
 
   public void Invert() {
     m_inversion *= -1;

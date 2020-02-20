@@ -22,31 +22,17 @@ import frc.robot.commands.Wait;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class DriveStraight10 extends CommandBase {
+public class DriveStraight10 extends SequentialCommandGroup {
     public BallHolder m_ballholder;
     
     public DriveStraight10(BallHolder ballholder) {
         m_ballholder = ballholder;
         addRequirements(ballholder);
-    }
-
-    public void initialize() {
-    }
-
-    public void execute() {
-        new SequentialCommandGroup(
+        
+        addCommands(
             new HoldBall(m_ballholder),
             new Wait(1),
             new ReleaseBall(m_ballholder));
-    }
-
-    public boolean isFinished() {
-        return true;
-    }
-
-    public void end() {
-    }
-
-    public void interruped() {
+        
     }
 }
