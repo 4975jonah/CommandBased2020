@@ -45,10 +45,6 @@ public final class Constants {
     public static final int[] kRightEncoderPorts = new int[]{2, 3};
     public static final boolean kLeftEncoderReversed = false;
     public static final boolean kRightEncoderReversed = true;
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master
     public static final double kP = 1;
     public static final double kI = 0;
     public static final double kD = 0;

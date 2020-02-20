@@ -128,11 +128,7 @@ public class RobotContainer {
       /*new JoystickButton(m_driverController, Button.kStart.value)
       .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
       .whenReleased(() -> m_robotDrive.setMaxOutput(1));*/
-<<<<<<< HEAD
       
-=======
-
->>>>>>> upstream/master
       new JoystickButton(m_driverController, Button.kB.value).whenPressed(() -> m_robotDrive.Invert());
       new JoystickButton(m_driverController, Button.kBumperRight.value).whenPressed(new UpShift(m_shifter));
       new JoystickButton(m_driverController, Button.kBumperLeft.value).whenPressed(new DownShift(m_shifter));
