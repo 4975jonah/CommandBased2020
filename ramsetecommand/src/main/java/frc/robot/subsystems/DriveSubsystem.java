@@ -193,11 +193,10 @@ public class DriveSubsystem extends SubsystemBase {
   *
   * @return the robot's heading in degrees, from 180 to 180
   */
-/*
   public double getHeading() {
-    return Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    return Math.IEEEremainder(m_gyro.getAngle(), 360) * (Constants.DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
-*/
+
   
   /**
   * Returns the turn rate of the robot/
