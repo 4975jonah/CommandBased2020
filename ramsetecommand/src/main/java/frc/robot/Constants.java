@@ -44,25 +44,30 @@ public final class Constants {
     public static final int[] kRightEncoderPorts = new int[]{2, 3};
     public static final boolean kLeftEncoderReversed = false;
     public static final boolean kRightEncoderReversed = true;
+    public static final double kP = 1;
+    public static final double kI = 0;
+    public static final double kD = 0;
+    public static final double kDriveRateTolerance = 0.1;
+    public static final double kDriveAccelerationTolerance = 0.9;
     
     public static final double kTrackwidthMeters = 0.69;
     public static final DifferentialDriveKinematics kDriveKinematics =
     new DifferentialDriveKinematics(kTrackwidthMeters);
     
-    public static final int kEncoderCPR = 1024;
-    public static final double kWheelDiameterMeters = 0.15;
+    public static final int kEncoderCPR = 42;
+    public static final double kWheelDiameterMeters = 0.152;
     public static final double kEncoderDistancePerPulse =
     // Assumes the encoders are directly mounted on the wheel shafts
     (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
     
     public static final boolean kGyroReversed = true;
     
-    // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
-    // These characterization values MUST be determined either experimentally or theoretically
-    // for *your* robot's drive.
-    // The Robot Characterization Toolsuite provides a convenient tool for obtaining these
-    // values for your robot.
-    
+    /* These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
+    *These characterization values MUST be determined either experimentally or theoretically
+    *for *your* robot's drive.
+    * The Robot Characterization Toolsuite provides a convenient tool for obtaining these
+    * values for your robot.
+    */
     public static final double kPDriveVel = 8.5;
   }
   
