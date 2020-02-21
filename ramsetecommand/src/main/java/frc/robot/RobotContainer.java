@@ -158,7 +158,6 @@ public class RobotContainer {
     */
     
     public Command getAutonomousCommand() {
-      new DriveStraight10(m_robotDrive, new PIDDrive(5, 0.5));
       return new DriveStraight10(m_robotDrive, new PIDDrive(5, 0.5));
     }
   }

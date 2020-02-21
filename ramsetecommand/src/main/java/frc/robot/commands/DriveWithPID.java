@@ -23,12 +23,12 @@ import frc.robot.Constants;
     super(
       new PIDController(Constants.DriveConstants.kP, Constants.DriveConstants.kI, Constants.DriveConstants.kD),
       drive::getHeading,
-      0, 
-      output -> drive.arcadeDrive(output, output), 
+      targetDistance, 
+      output -> drive.tankDrivePercent(output, output), 
       drive);
-  
-  getController().enableContinuousInput(0.5, 1.0);
-  getController().setTolerance(Constants.DriveConstants.kDriveRateTolerance, 
-  Constants.DriveConstants.kDriveAccelerationTolerance);
+
+    getController().enableContinuousInput(-1.0, 1.0);
+    getController().setTolerance(Constants.DriveConstants.kDriveRateTolerance, 
+                                 Constants.DriveConstants.kDriveAccelerationTolerance);
   }
 }
