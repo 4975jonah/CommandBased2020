@@ -4,9 +4,6 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.DriveSubsystem;
 
-import java.util.function.DoubleSupplier;
-import java.util.function.DoubleConsumer;
-
 import frc.robot.Constants;
 
  public class DriveWithPID extends PIDCommand {
@@ -23,12 +20,12 @@ import frc.robot.Constants;
     super(
       new PIDController(Constants.DriveConstants.kP, Constants.DriveConstants.kI, Constants.DriveConstants.kD),
       drive::getHeading,
-      targetDistance, 
-      output -> drive.tankDrivePercent(output, output), 
+      targetDistance,
+      output -> drive.tankDrivePercent(output, output),
       drive);
 
     getController().enableContinuousInput(-1.0, 1.0);
-    getController().setTolerance(Constants.DriveConstants.kDriveRateTolerance, 
+    getController().setTolerance(Constants.DriveConstants.kDriveRateTolerance,
                                  Constants.DriveConstants.kDriveAccelerationTolerance);
   }
 }

@@ -6,18 +6,11 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot.subsystems;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
-
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Encoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
-import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -35,14 +28,14 @@ public class DriveSubsystem extends SubsystemBase {
   private final DifferentialDrive m_drive = new DifferentialDrive(leftLead, rightLead);
 
   private int m_inversion = 1;
-  
+
   private final AHRS m_gyro = new AHRS(SPI.Port.kMXP);
 
   public DriveSubsystem() {
     leftFollow.follow(leftLead);
     rightFollow.follow(rightLead);
   }
-  
+
   public void chaseBall(double leftSpeed, double rightSpeed) {
     /*
      * It might look funky but we use tankDrive so we can control the left
@@ -51,7 +44,7 @@ public class DriveSubsystem extends SubsystemBase {
      */
     m_drive.tankDrive(leftSpeed, rightSpeed);
   }
-  
+
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
     m_drive.arcadeDrive(leftSpeed*getInverted(), rightSpeed*getInverted());
   }
@@ -85,7 +78,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_gyro.reset();
   }
 */
-  
+
   /**
   * Returns the heading of the robot.
   *
@@ -94,5 +87,4 @@ public class DriveSubsystem extends SubsystemBase {
   public double getHeading() {
     return Math.IEEEremainder(m_gyro.getAngle(), 360) * (Constants.DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
-
 }

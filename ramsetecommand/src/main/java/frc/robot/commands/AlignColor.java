@@ -13,18 +13,18 @@ import frc.robot.subsystems.ControlPanel;
 public class AlignColor extends CommandBase {
     private final ControlPanel m_controlpanel;
     private final ColorSensor m_colorsensor;
-    
-    
+
+
     public AlignColor(ControlPanel controlpanel, ColorSensor ColorSensor) {
         m_controlpanel = controlpanel;
         m_colorsensor = ColorSensor;
         addRequirements(controlpanel, ColorSensor);
     }
-    
+
     public void initialize() {
         //m_controlpanel.Spin();
     }
-    
+
     public void execute() {
         m_colorsensor.checkColor();
         m_colorsensor.checkRedYellow();
@@ -35,12 +35,12 @@ public class AlignColor extends CommandBase {
         //m_controlpanel.stop();
         return false;
     }
-    
+
     public void end() {
-        
+
     }
-    
+
     public void interrupted() {
-        
+
     }
 }

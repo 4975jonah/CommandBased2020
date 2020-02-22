@@ -7,14 +7,14 @@ import frc.robot.subsystems.Aimer;
 
 public class Aim extends CommandBase {
     private final Aimer m_aimer;
-    private DoubleSolenoid.Value m_aimPosition;
-    
-    public Aim (Aimer aimer) {
+
+    public Aim(Aimer aimer) {
         m_aimer = aimer;
         addRequirements(aimer);
     }
+
     public void initialize() {
-        m_aimPosition = m_aimer.getAimer();
+        m_aimer.getAimer();
     }
     public void execute() {
         DoubleSolenoid.Value shifter_state = m_aimer.getAimer();
@@ -24,16 +24,16 @@ public class Aim extends CommandBase {
             m_aimer.AimUp();
         }
     }
-    
+
     public boolean isFinished() {
         return true;
     }
-    
+
     public void end() {
-        
+
     }
-    
+
     public void interrupted() {
-        
+
     }
 }
