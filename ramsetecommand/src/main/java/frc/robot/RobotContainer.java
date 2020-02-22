@@ -7,26 +7,11 @@
 
 package frc.robot;
 
-import java.util.List;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.RamseteController;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
-import edu.wpi.first.wpilibj.trajectory.Trajectory;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
-import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.BallHolder;
 import frc.robot.commands.HoldBall;
@@ -49,7 +34,6 @@ import frc.robot.commands.Shoot;
 import frc.robot.commands.Cintake;
 import frc.robot.commands.Cop_Cintake;
 import frc.robot.subsystems.Sintake;
-import frc.robot.commands.Kuchota;
 import frc.robot.commands.Cuntake;
 import frc.robot.commands.StopShooter;
 import frc.robot.subsystems.ControlPanel;
@@ -83,7 +67,7 @@ public class RobotContainer {
   // The driver's controller
   private final XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
   private final XboxController m_helperController = new XboxController(OIConstants.kHelperControllerPort);
-  
+
   DoubleSolenoid.Value foo = m_shifter.getShifter();
   /**
   * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -91,7 +75,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    
+
     // Configure defaramseteCommand.ramseteCommandult commands
     // Set the default drive command to split-stick arcade drive
       m_robotDrive.setDefaultCommand(
@@ -100,10 +84,10 @@ public class RobotContainer {
             m_shifter,
             () -> m_driverController.getY(GenericHID.Hand.kLeft),
             () -> m_driverController.getX(GenericHID.Hand.kLeft)));
-      
+
       m_colorsensor.setDefaultCommand(
           new AlignColor(
-            m_controlpanel, 
+            m_controlpanel,
             m_colorsensor
       ));
 
@@ -112,7 +96,7 @@ public class RobotContainer {
           m_motorclimber,
           () -> m_helperController.getTriggerAxis(GenericHID.Hand.kRight)));
   }
-  
+
   /**
   * Use this method to define your button->command mappings.  Buttons can be created by
   * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -142,19 +126,19 @@ public class RobotContainer {
       new JoystickButton(m_helperController, Button.kBumperLeft.value).whenPressed(new Retract_Climber(m_pclimber));
       new JoystickButton(m_helperController, Button.kBumperRight.value).whenReleased(new Extend_Climber(m_pclimber));
     }
-    
-    
-    
-    
+
+
+
+
     /**
     * Use this to pass the autonomous command to the main {@link Robot} class.
     *
     * @return the command to run in autonomous
     */
-    
+
     public Command getAutonomousCommand() {
       new DriveStraight10(m_ballholder);
-      
+
       /*
       // Create a voltage constraint to ensure we don't accelerate too fast
       var autoVoltageConstraint =
@@ -164,7 +148,7 @@ public class RobotContainer {
       DriveConstants.kaVoltSecondsSquaredPerMeter),
       DriveConstants.kDriveKinematics,
       10);
-      
+
       // Create config for trajectory
       TrajectoryConfig config =
       new TrajectoryConfig(AutoConstants.kMaxSpeedMetersPerSecond,
@@ -185,7 +169,7 @@ public class RobotContainer {
       // Pass config
       config
       );
-      
+
       RamseteCommand ramseteCommand = new RamseteCommand(
       exampleTrajectory,
       m_robotDrive::getPoseramseteCommand.ramseteCommandrward(DriveConstants.ksVolts,
@@ -199,11 +183,10 @@ public class RobotContainer {
       m_robotDrive::tankDriveVolts,
       m_robotDrive
       );
-      
+
       // Run path following command, then stop at the end.
       return ramseteCommand.andThen(() -> m_robotDrive.tankDriveVolts(0, 0));
       */
       return new DriveStraight10(m_ballholder);
     }
   }
-  

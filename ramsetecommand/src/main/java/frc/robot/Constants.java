@@ -39,7 +39,7 @@ public final class Constants {
 
   public static final class DriveConstants {
     public static final double kRotationMultiplier = 0.3;
-    
+
     public static final int[] kLeftEncoderPorts = new int[]{0, 1};
     public static final int[] kRightEncoderPorts = new int[]{2, 3};
     public static final boolean kLeftEncoderReversed = false;
@@ -49,19 +49,19 @@ public final class Constants {
     public static final double kD = 0;
     public static final double kDriveRateTolerance = 0.1;
     public static final double kDriveAccelerationTolerance = 0.9;
-    
+
     public static final double kTrackwidthMeters = 0.69;
     public static final DifferentialDriveKinematics kDriveKinematics =
     new DifferentialDriveKinematics(kTrackwidthMeters);
-    
+
     public static final int kEncoderCPR = 42;
     public static final double kWheelDiameterMeters = 0.152;
     public static final double kEncoderDistancePerPulse =
     // Assumes the encoders are directly mounted on the wheel shafts
     (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
-    
+
     public static final boolean kGyroReversed = true;
-    
+
     /* These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
     *These characterization values MUST be determined either experimentally or theoretically
     *for *your* robot's drive.
@@ -70,16 +70,16 @@ public final class Constants {
     */
     public static final double kPDriveVel = 8.5;
   }
-  
+
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
     public static final int kHelperControllerPort = 1;
   }
-  
+
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 3;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-    
+
     // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;

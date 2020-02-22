@@ -8,14 +8,9 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Encoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
-import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
@@ -33,17 +28,17 @@ public class DriveSubsystem extends SubsystemBase {
   private final DifferentialDrive m_drive = new DifferentialDrive(leftLead, rightLead);
 
   private int m_inversion = 1;
-  
+
   private final AHRS m_gyro = new AHRS(SPI.Port.kMXP);
-  
+
   //private final Encoder m_leftEncoder =
   //new Encoder(Constants.CANBusIDs.Drive.kLeftEncoderPorts[0], DriveConstants.kLeftEncoderPorts[1],
   //DriveConstants.kLeftEncoderReversed);
-  
+
   //private final Encoder m_rightEncoder =
   //new Encoder(DriveConstants.kRightEncoderPorts[0], DriveConstants.kRightEncoderPorts[1],
   //DriveConstants.kRightEncoderReversed);
-  
+
   // private final DifferentialDriveOdometry m_odometry;
 
   public DriveSubsystem() {
@@ -73,7 +68,7 @@ public class DriveSubsystem extends SubsystemBase {
     return m_odometry.getPoseMeters();
   }
 */
-  
+
   /**
   * Returns the current wheel speeds of the robot.
   *
@@ -95,7 +90,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_odometry.resetPosition(pose, Rotation2d.fromDegrees(getHeading()));
   }
 */
-  
+
   public void chaseBall(double leftSpeed, double rightSpeed) {
     /*
      * It might look funky but we use tankDrive so we can control the left
@@ -104,11 +99,11 @@ public class DriveSubsystem extends SubsystemBase {
      */
     m_drive.tankDrive(leftSpeed, rightSpeed);
   }
-  
+
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
     m_drive.arcadeDrive(leftSpeed*getInverted(), rightSpeed*getInverted());
   }
-  
+
   public double getHeading() {
     return m_gyro.getAngle();
   }
@@ -120,7 +115,7 @@ public class DriveSubsystem extends SubsystemBase {
   public int getInverted() {
     return m_inversion;
   }
-  
+
   /**
   * Controls the left and right sides of the drive directly with voltages.
   *
@@ -131,7 +126,7 @@ public class DriveSubsystem extends SubsystemBase {
     leftLead.set(leftPercent);
     rightLead.setVoltage(-rightPercent);
   }
-  
+
   /**
   * Resets the drive encoders to currently read a position of 0.
   */
@@ -141,7 +136,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_rightEncoder.reset();
   }
 */
-  
+
   /**
   * Gets the average distance of the two encoders.
   *
@@ -173,7 +168,7 @@ public class DriveSubsystem extends SubsystemBase {
     return m_rightEncoder;
   }
 */
-  
+
   /**
   * Sets the max output of the drive.  Useful for scaling the drive to drive more slowly.
   *
@@ -182,7 +177,7 @@ public class DriveSubsystem extends SubsystemBase {
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
   }
-  
+
   /**
   * Zeroes the heading of the robot.
   */
@@ -191,7 +186,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_gyro.reset();
   }
 */
-  
+
   /**
   * Returns the heading of the robot.
   *
@@ -202,7 +197,7 @@ public class DriveSubsystem extends SubsystemBase {
     return Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 */
-  
+
   /**
   * Returns the turn rate of the robot/
 /*
