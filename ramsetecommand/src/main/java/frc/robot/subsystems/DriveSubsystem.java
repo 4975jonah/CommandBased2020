@@ -31,65 +31,10 @@ public class DriveSubsystem extends SubsystemBase {
 
   private final AHRS m_gyro = new AHRS(SPI.Port.kMXP);
 
-  //private final Encoder m_leftEncoder =
-  //new Encoder(Constants.CANBusIDs.Drive.kLeftEncoderPorts[0], DriveConstants.kLeftEncoderPorts[1],
-  //DriveConstants.kLeftEncoderReversed);
-
-  //private final Encoder m_rightEncoder =
-  //new Encoder(DriveConstants.kRightEncoderPorts[0], DriveConstants.kRightEncoderPorts[1],
-  //DriveConstants.kRightEncoderReversed);
-
-  // private final DifferentialDriveOdometry m_odometry;
-
   public DriveSubsystem() {
     leftFollow.follow(leftLead);
     rightFollow.follow(rightLead);
-
-//    resetEncoders();
-//    m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
   }
-
-/*
-  @Override
-  public void periodic() {
-    // Update the odometry in the periodic block
-    m_odometry.update(Rotation2d.fromDegrees(getHeading()), m_leftEncoder.getDistance(),
-    m_rightEncoder.getDistance());
-  }
-*/
-
-  /**
-  * Returns the currently-estimated pose of the robot.
-  *
-  * @return The pose.
-  */
-/*
-  public Pose2d getPose() {
-    return m_odometry.getPoseMeters();
-  }
-*/
-
-  /**
-  * Returns the current wheel speeds of the robot.
-  *
-  * @return The current wheel speeds.
-  */
-/*
-  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-    return new DifferentialDriveWheelSpeeds(m_leftEncoder.getRate(), m_rightEncoder.getRate());
-  }
-*/
-  /**
-  * Resets the odometry to the specified pose.
-  *
-  * @param pose The pose to which to set the odometry.
-  */
-/*
-  public void resetOdometry(Pose2d pose) {
-    resetEncoders();
-    m_odometry.resetPosition(pose, Rotation2d.fromDegrees(getHeading()));
-  }
-*/
 
   public void chaseBall(double leftSpeed, double rightSpeed) {
     /*
@@ -104,10 +49,6 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive.arcadeDrive(leftSpeed*getInverted(), rightSpeed*getInverted());
   }
 
-  public double getHeading() {
-    return m_gyro.getAngle();
-  }
-
   public void Invert() {
     m_inversion *= -1;
   }
@@ -116,58 +57,12 @@ public class DriveSubsystem extends SubsystemBase {
     return m_inversion;
   }
 
-  /**
-  * Controls the left and right sides of the drive directly with voltages.
-  *
-  * @param leftVolts  the commanded left output
-  * @param rightVolts the commanded right output
-  */
   public void tankDrivePercent(double leftPercent, double rightPercent) {
+    System.out.println("DriveSubsystem:tankDrivePercent: left: " + leftPercent +
+      ", right: " + rightPercent);
     leftLead.set(leftPercent);
-    rightLead.setVoltage(-rightPercent);
+    rightLead.set(-rightPercent);
   }
-
-  /**
-  * Resets the drive encoders to currently read a position of 0.
-  */
-/*
-  public void resetEncoders() {
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
-  }
-*/
-
-  /**
-  * Gets the average distance of the two encoders.
-  *
-  * @return the average of the two encoder readings
-  */
-/*
-  public double getAverageEncoderDistance() {
-    return (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
-  }
-*/
-
-  /**
-  * Gets the left drive encoder.
-  *
-  * @return the left drive encoder
-  */
-/*
-  public Encoder getLeftEncoder() {
-    return m_leftEncoder;
-  }
-*/
-  /*
-  * Gets the right drive encoder.
-  *
-  * @return the right drive encoder
-  */
-/*
-  public Encoder getRightEncoder() {
-    return m_rightEncoder;
-  }
-*/
 
   /**
   * Sets the max output of the drive.  Useful for scaling the drive to drive more slowly.
@@ -178,9 +73,6 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive.setMaxOutput(maxOutput);
   }
 
-  /**
-  * Zeroes the heading of the robot.
-  */
 /*
   public void zeroHeading() {
     m_gyro.reset();
@@ -192,17 +84,7 @@ public class DriveSubsystem extends SubsystemBase {
   *
   * @return the robot's heading in degrees, from 180 to 180
   */
-/*
   public double getHeading() {
-    return Math.IEEEremainder(m_gyro.getAngle(), 360) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    return Math.IEEEremainder(m_gyro.getAngle(), 360) * (Constants.DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
-*/
-
-  /**
-  * Returns the turn rate of the robot/
-/*
-  public double getTurnRate() {
-    return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
-  }
-*/
 }

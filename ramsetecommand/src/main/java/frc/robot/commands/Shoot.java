@@ -22,11 +22,12 @@ public class Shoot extends CommandBase {
     }
     
     public void execute() {
+        System.out.println("in shoot");
         m_shooter.Shoot();
     }
     
     public boolean isFinished() {
-        return false;
+        return true;
     }
     
     public void end() {

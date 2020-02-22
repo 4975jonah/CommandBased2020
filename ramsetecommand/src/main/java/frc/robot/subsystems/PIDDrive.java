@@ -34,12 +34,13 @@ public class PIDDrive extends PIDSubsystem {
 
   @Override
   public void useOutput(double output, double setpoint) {
-    m_drive.tankDrivePercent(output + m_driveFeedForward.calculate(setpoint), output + m_driveFeedForward.calculate(setpoint));
+    System.out.println("PIDDrive:useOutput: output is " + output);
+    m_drive.tankDrivePercent(output, output);
   }
 
   @Override
   public double getMeasurement() {
-    return left_encoder.getVelocity();
+    return left_encoder.getPosition();
   }
 
  /*
