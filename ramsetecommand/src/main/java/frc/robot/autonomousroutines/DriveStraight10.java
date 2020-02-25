@@ -7,32 +7,23 @@
 
 package frc.robot.autonomousroutines;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
-import frc.robot.Constants;
-import frc.robot.subsystems.BallHolder;
-import frc.robot.commands.HoldBall;
-import frc.robot.commands.ReleaseBall;
-import frc.robot.commands.Wait;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.subsystems.PIDDrive;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.commands.DriveWithPID;
 
 public class DriveStraight10 extends SequentialCommandGroup {
-    public BallHolder m_ballholder;
-    
-    public DriveStraight10(BallHolder ballholder) {
-        m_ballholder = ballholder;
-        addRequirements(ballholder);
-        
-        addCommands(
-            new HoldBall(m_ballholder),
-            new Wait(1),
-            new ReleaseBall(m_ballholder));
-        
-    }
+  public DriveSubsystem m_regdrive;
+  public PIDDrive m_piddrive;
+
+  public DriveStraight10(DriveSubsystem drivesubsystem, PIDDrive piddrive) {
+    m_regdrive = drivesubsystem;
+    m_piddrive = piddrive;
+    addRequirements(m_regdrive, m_piddrive);
+
+    addCommands(
+      new DriveWithPID(2, m_regdrive)
+    );
+  }
 }

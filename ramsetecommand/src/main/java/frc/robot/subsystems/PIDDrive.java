@@ -6,17 +6,13 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
 import frc.robot.Constants;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import frc.robot.subsystems.DriveSubsystem;
 
 public class PIDDrive extends PIDSubsystem {
   private CANSparkMax leftLead = new CANSparkMax(Constants.CANBusIDs.Drive.kLeftMotor1Port, MotorType.kBrushless);
@@ -38,12 +34,13 @@ public class PIDDrive extends PIDSubsystem {
 
   @Override
   public void useOutput(double output, double setpoint) {
-    m_drive.tankDrivePercent(output + m_driveFeedForward.calculate(setpoint), output + m_driveFeedForward.calculate(setpoint));
+    System.out.println("PIDDrive:useOutput: output is " + output);
+    m_drive.tankDrivePercent(output, output);
   }
 
   @Override
   public double getMeasurement() {
-    return left_encoder.getVelocity();
+    return left_encoder.getPosition();
   }
 
  /*
