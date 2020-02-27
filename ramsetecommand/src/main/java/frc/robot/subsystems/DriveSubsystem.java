@@ -48,6 +48,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
     m_drive.arcadeDrive(leftSpeed*getInverted(), rightSpeed*getInverted());
+    System.out.println("leftSpeed is " + leftSpeed);
+    System.out.println("rightSpeed is " + rightSpeed);
   }
 
   public void Invert() {

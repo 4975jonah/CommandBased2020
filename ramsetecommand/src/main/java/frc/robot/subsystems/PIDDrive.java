@@ -22,11 +22,13 @@ public class PIDDrive extends PIDSubsystem {
   private final DriveSubsystem m_drive = new DriveSubsystem();
   private CANEncoder left_encoder = leftLead.getEncoder();
   private CANEncoder right_encoder = rightLead.getEncoder();
+  private CANEncoder left_position = leftLead.getEncoder();
+  private CANEncoder right_position = rightLead.getEncoder();
   private SimpleMotorFeedforward m_driveFeedForward = new SimpleMotorFeedforward(1, 3);
   /*
    * The PID based drive subsystem for the robot.
   */
-  public PIDDrive(double target_distance, double tolerated_distance) {
+   public PIDDrive(double target_distance, double tolerated_distance) {
     super(new PIDController(Constants.DriveConstants.kP, Constants.DriveConstants.kI, Constants.DriveConstants.kD));
     getController().setTolerance(tolerated_distance);
     setSetpoint(target_distance);
@@ -38,11 +40,23 @@ public class PIDDrive extends PIDSubsystem {
     m_drive.tankDrivePercent(output, output);
   }
 
-  @Override
-  public double getMeasurement() {
-    return left_encoder.getPosition();
+  public double getleftMeasurement() {
+    final double left_position = left_encoder.getPosition();
+    return left_position;
+  }
+  
+  public double getrightMeasurement() {
+    final double right_position = right_encoder.getPosition();
+    return right_position;
+    
   }
 
+  public double getAvgDistance() {
+    final double sum = getleftMeasurement() + getrightMeasurement();
+    return sum/2;
+  }
+  public double gett
+  
  /*
   *public boolean atSetpoint() {
   *  return m_controller.atSetpoint();
@@ -57,3 +71,4 @@ public class PIDDrive extends PIDSubsystem {
   }
   */
 }
+
