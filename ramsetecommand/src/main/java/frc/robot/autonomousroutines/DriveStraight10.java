@@ -23,6 +23,7 @@ public class DriveStraight10 extends SequentialCommandGroup {
     addRequirements(m_regdrive, m_piddrive);
 
     addCommands(
-      new DriveWithPID(2, m_regdrive);
+      new DriveWithPID(2.0, m_regdrive, m_piddrive)
+    );
   }
 }

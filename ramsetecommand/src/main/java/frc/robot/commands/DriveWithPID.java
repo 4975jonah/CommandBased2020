@@ -6,8 +6,8 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.PIDDrive;
 import frc.robot.Constants;
 
- public class DriveWithPID extends PIDCommand {
- /**
+public class DriveWithPID extends PIDCommand {
+  /**
    * Creates a new PIDCommand, which controls the given output with a PIDController.
    *
    * @param controller        the controller that controls the output.
@@ -17,12 +17,12 @@ import frc.robot.Constants;
    * @param requirements      the subsystems required by this command
    */
   public DriveWithPID(double targetDistance , DriveSubsystem drive, PIDDrive piddrive) {
-   super(
+    super(
       new PIDController(Constants.DriveConstants.kP, Constants.DriveConstants.kI, Constants.DriveConstants.kD),
       drive::getHeading,
       targetDistance,
-      output -> drive.tankDrivePercent(PIDController.calculate(piddrive.getAvgDistance(), targetDistance),
-      drive));
+      output -> drive.tankDrivePercent(piddrive.getController().calculate(piddrive.getMeasurement()), targetDistance),
+      drive);
 
     getController().enableContinuousInput(-1.0, 1.0);
     getController().setTolerance(Constants.DriveConstants.kDriveRateTolerance,
