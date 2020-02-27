@@ -48,8 +48,8 @@ public final class Constants {
     public static final double kP = 5;
     public static final double kI = 1;
     public static final double kD = 5;
-    public static final double kDriveRateTolerance = 0.5;
-    public static final double kDriveAccelerationTolerance = 0.9;
+    public static final double kDriveRateTolerance = 0.1;
+    public static final double kDriveAccelerationTolerance = 0.1;
 
     public static final double kTrackwidthMeters = 0.69;
     public static final DifferentialDriveKinematics kDriveKinematics =

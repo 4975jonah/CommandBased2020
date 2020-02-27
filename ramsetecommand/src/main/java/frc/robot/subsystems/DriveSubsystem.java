@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants;
 
+
 public class DriveSubsystem extends SubsystemBase {
   /*
    * Our left and right side of the drivetrain is only being controlled by two
@@ -47,6 +48,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void arcadeDrive(double leftSpeed, double rightSpeed) {
     m_drive.arcadeDrive(leftSpeed*getInverted(), rightSpeed*getInverted());
+    System.out.println("leftSpeed is " + leftSpeed);
+    System.out.println("rightSpeed is " + rightSpeed);
   }
 
   public void Invert() {
@@ -84,7 +87,17 @@ public class DriveSubsystem extends SubsystemBase {
   *
   * @return the robot's heading in degrees, from 180 to 180
   */
+
   public double getHeading() {
     return Math.IEEEremainder(m_gyro.getAngle(), 360) * (Constants.DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
+
+  
+  /**
+  * Returns the turn rate of the robot/
+/*
+  public double getTurnRate() {
+    return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+  }
+*/
 }
