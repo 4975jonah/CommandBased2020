@@ -25,50 +25,42 @@ public class PIDDrive extends PIDSubsystem {
   private CANEncoder left_position = leftLead.getEncoder();
   private CANEncoder right_position = rightLead.getEncoder();
   private SimpleMotorFeedforward m_driveFeedForward = new SimpleMotorFeedforward(1, 3);
+  private double m_currentDistance;
+
   /*
    * The PID based drive subsystem for the robot.
-  */
-   public PIDDrive(double target_distance, double tolerated_distance) {
+   */
+  public PIDDrive(double target_distance, double tolerated_distance) {
     super(new PIDController(Constants.DriveConstants.kP, Constants.DriveConstants.kI, Constants.DriveConstants.kD));
+
     getController().setTolerance(tolerated_distance);
     setSetpoint(target_distance);
+
+    m_currentDistance = 0.0;
   }
 
   @Override
   public void useOutput(double output, double setpoint) {
-    System.out.println("PIDDrive:useOutput: output is " + output);
+    System.out.println("PIDDrive:useOutput: output: " + output + ", setpoint: " + setpoint);
     m_drive.tankDrivePercent(output, output);
   }
 
-  public double getleftMeasurement() {
-    final double left_position = left_encoder.getPosition();
-    return left_position;
-  }
-  
-  public double getrightMeasurement() {
-    final double right_position = right_encoder.getPosition();
-    return right_position;
-    
-  }
+  /**
+   * Returns the measurement of the process variable used by the PIDController.
+   *
+   * <p>In this case the process variable is the distance traveled since the last time we checked.
+   * We are using only the left encoder to discern our distance, so the motors better be sync'd.
+   *
+   * @return the measurement of the process variable (distance).
+   */
+  public double getMeasurement() {
+    final double leftD = left_encoder.getPosition()
+                          * (double) (left_encoder.getCountsPerRevolution());
 
-  public double getAvgDistance() {
-    final double sum = getleftMeasurement() + getrightMeasurement();
-    return sum/2;
+    System.out.println("PIDDrive:getMeasurement: leftD: " + leftD);
+
+    m_currentDistance += leftD;
+
+    return m_currentDistance;
   }
-  public double gett
-  
- /*
-  *public boolean atSetpoint() {
-  *  return m_controller.atSetpoint();
-  *}
-  *
-  *public void runFeeder() {
-  *  m_drive.set(ShooterConstants.kFeederSpeed);
-  *}
-  *
-  *public void stopFeeder() {
-  *  m_drive.set(0);
-  }
-  */
 }
-
